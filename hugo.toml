@@ -1,0 +1,31 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Bharat Khanna Tech Blog"
+theme = "hugo-theme-stack"
+
+[params]
+	author = "Bharat Khanna"
+	description = "Tech articles, AI, LLM, DevOps, and more."
+	mainSections = ["ai", "llm", "devops", "vector-db", "case-studies"]
+	favicon = "/favicon.ico"
+	[params.dateFormat]
+		published = "2006-01-02"
+		lastUpdated = "2006-01-02"
+	[params.sidebar]
+		subtitle = "AI, LLM, DevOps, and more"
+		avatar = ""
+		emoji = "💡"
+	toc = true
+	comments = false
+
+[menu]
+	[[menu.main]]
+		identifier = "home"
+		name = "Home"
+		url = "/"
+		weight = 1
+	[[menu.main]]
+		identifier = "about"
+		name = "About"
+		url = "/about/"
+		weight = 2
