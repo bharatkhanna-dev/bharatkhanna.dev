@@ -1,15 +1,130 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Bharat Khanna Tech Blog</title>
-        <link>http://localhost:1313/</link>
-        <description>Recent content on Bharat Khanna Tech Blog</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
-        <lastBuildDate>Sun, 22 Feb 2026 16:02:19 -0700</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
-            <title>Evaluators in Agentic Ai Multiturn</title>
-            <link>http://localhost:1313/ai/evaluators-in-agentic-ai-multiturn/</link>
-            <pubDate>Sun, 22 Feb 2026 16:02:19 -0700</pubDate>
-            <guid>http://localhost:1313/ai/evaluators-in-agentic-ai-multiturn/</guid>
-            <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;Agentic AI systems are designed to perform complex, multi-step tasks by interacting with their environment and making decisions over multiple turns. Evaluators play a crucial role in these systems by assessing the quality, safety, and effectiveness of each step or the overall outcome.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-are-evaluators&#34;&gt;What Are Evaluators?&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Definition: Components or modules that score, rank, or validate agent actions or outputs.&lt;/li&gt;&#xA;&lt;li&gt;Purpose: Ensure reliability, correctness, and alignment with user goals.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-are-evaluators-important-in-multi-turn-ai&#34;&gt;Why Are Evaluators Important in Multi-Turn AI?&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Multi-turn tasks require ongoing assessment, not just a final check.&lt;/li&gt;&#xA;&lt;li&gt;Evaluators can provide feedback after each step, enabling course correction.&lt;/li&gt;&#xA;&lt;li&gt;They help prevent error propagation in long agentic chains.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;types-of-evaluators&#34;&gt;Types of Evaluators&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Heuristic-based: Rule-driven checks (e.g., output format, keyword presence)&lt;/li&gt;&#xA;&lt;li&gt;Model-based: Use ML/LLM models to judge relevance, safety, or accuracy&lt;/li&gt;&#xA;&lt;li&gt;Human-in-the-loop: Manual review for critical or ambiguous cases&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;example-multi-turn-agent-with-evaluators&#34;&gt;Example: Multi-Turn Agent with Evaluators&#xD;&#xA;&lt;/h2&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Task:&lt;/strong&gt; Research a topic, summarize findings, and generate a report.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Agent Steps:&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Search for sources&lt;/li&gt;&#xA;&lt;li&gt;Extract key points&lt;/li&gt;&#xA;&lt;li&gt;Draft summary&lt;/li&gt;&#xA;&lt;li&gt;Format report&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Evaluator Roles:&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Check source credibility&lt;/li&gt;&#xA;&lt;li&gt;Validate summary accuracy&lt;/li&gt;&#xA;&lt;li&gt;Ensure report formatting&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;best-practices&#34;&gt;Best Practices&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Combine multiple evaluator types for robustness&lt;/li&gt;&#xA;&lt;li&gt;Log evaluator feedback for transparency and debugging&lt;/li&gt;&#xA;&lt;li&gt;Use evaluators to trigger agent retries or alternative strategies&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;challenges&#34;&gt;Challenges&#xD;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Designing objective, reliable evaluators&lt;/li&gt;&#xA;&lt;li&gt;Balancing automation with human oversight&lt;/li&gt;&#xA;&lt;li&gt;Avoiding overfitting to evaluator metrics&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&#xD;&#xA;&lt;/h2&gt;&lt;p&gt;Evaluators are essential for building trustworthy, effective agentic AI systems—especially for multi-turn workflows. As agentic architectures evolve, so will the sophistication and importance of evaluators.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Draft: Set to false when ready to publish.&lt;/em&gt;&lt;/p&gt;&#xA;</description>
-        </item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bharat Khanna</title><link>https://bharatkhanna.dev/</link><description>Recent content on Bharat Khanna</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025-2026 Bharat Khanna</copyright><lastBuildDate>Sun, 22 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://bharatkhanna.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Production RAG Pipeline</title><link>https://bharatkhanna.dev/projects/production-rag-pipeline/</link><pubDate>Sun, 22 Feb 2026 00:00:00 +0000</pubDate><guid>https://bharatkhanna.dev/projects/production-rag-pipeline/</guid><description>&lt;p&gt;A production-grade RAG pipeline built for high-throughput document Q&amp;amp;A.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Architecture
+ &lt;div id="architecture" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#architecture" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ingestion&lt;/strong&gt;: Async document processing pipeline with chunking and metadata extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;/strong&gt;: pgvector with HNSW indexing for sub-10ms retrieval&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Retrieval&lt;/strong&gt;: Hybrid BM25 + dense retrieval with cross-encoder re-ranking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Serving&lt;/strong&gt;: FastAPI with streaming responses, circuit breakers, and graceful degradation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Key Decisions
+ &lt;div id="key-decisions" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#key-decisions" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Used pgvector over a dedicated vector DB for operational simplicity — one less stateful service to manage in production. The HNSW index handles 10M+ vectors with p95 retrieval latency under 8ms.&lt;/p&gt;</description></item><item><title>LangGraph Agent Evaluation Harness</title><link>https://bharatkhanna.dev/projects/agent-eval-harness/</link><pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate><guid>https://bharatkhanna.dev/projects/agent-eval-harness/</guid><description>&lt;p&gt;A drop-in evaluation framework for LangGraph-based agents.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;What It Solves
+ &lt;div id="what-it-solves" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-it-solves" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Most agent evaluation is ad-hoc: someone runs a few manual tests, the agent ships, and regressions are discovered in production. This harness provides a structured, automatable alternative.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Components
+ &lt;div id="components" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#components" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Single-turn evals&lt;/strong&gt;: LangSmith experiments with custom heuristic + LLM-as-judge scoring&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trajectory scoring&lt;/strong&gt;: &lt;code&gt;interrupt_before=[&amp;quot;tools&amp;quot;]&lt;/code&gt; pattern for inspecting proposed tool calls before execution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-turn simulation&lt;/strong&gt;: A simulated user agent that adapts dynamically to agent responses&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pytest integration&lt;/strong&gt;: &lt;code&gt;@pytest.mark.langsmith&lt;/code&gt; decorator with threshold-based CI gates&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Usage
+ &lt;div id="usage" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#usage" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# One-command regression suite&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;pytest&lt;/span&gt; &lt;span class="n"&gt;tests&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;agent_quality&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;langsmith&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;regression_v1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Fails the build if mean correctness drops below 0.85 across the eval dataset.&lt;/p&gt;</description></item><item><title>Deploying LangGraph Agents to Production: A Practical Infrastructure Guide</title><link>https://bharatkhanna.dev/devops/deploying-langgraph-agents-production/</link><pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate><guid>https://bharatkhanna.dev/devops/deploying-langgraph-agents-production/</guid><description>&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt; — A LangGraph agent is just a stateful graph. Deploying one is just serving that graph behind an API. The complexity isn&amp;rsquo;t in the graph — it&amp;rsquo;s in the nine things you forget to handle until they fail in production.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 class="relative group"&gt;The Gap Between &amp;ldquo;Working&amp;rdquo; and &amp;ldquo;Production&amp;rdquo;
+ &lt;div id="the-gap-between-working-and-production" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-gap-between-working-and-production" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Your LangGraph agent runs perfectly in a Jupyter notebook. Five of your friends have tested it. The demo was flawless.&lt;/p&gt;</description></item><item><title>Vector Database Benchmarking Suite</title><link>https://bharatkhanna.dev/projects/vector-db-bench/</link><pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate><guid>https://bharatkhanna.dev/projects/vector-db-bench/</guid><description>&lt;p&gt;Reproducible benchmarks for selecting a vector database for production RAG systems.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Motivation
+ &lt;div id="motivation" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#motivation" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;Which vector DB should we use?&amp;rdquo; is a question with no universally correct answer. The right choice depends on your scale, existing infrastructure, latency budget, and ops team size. This suite gives you numbers on your data, not someone else&amp;rsquo;s marketing benchmarks.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;What Gets Measured
+ &lt;div id="what-gets-measured" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-gets-measured" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Recall@k&lt;/strong&gt;: How often the correct document appears in the top-k results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Insert throughput&lt;/strong&gt;: Documents per second for batch ingestion&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Query latency&lt;/strong&gt;: p50, p95, p99 at varying concurrency levels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Index build time&lt;/strong&gt;: How long HNSW/IVF indexing takes at 1M, 10M, 100M vectors&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monthly cost estimate&lt;/strong&gt;: Based on managed cloud pricing calculators&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Key Finding
+ &lt;div id="key-finding" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#key-finding" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;For teams already running PostgreSQL, pgvector with HNSW indexing reaches within 5-8% of Pinecone&amp;rsquo;s recall at 1/10th the cost below 50M vectors. The crossover point is roughly 100M vectors + &amp;gt;10k QPS.&lt;/p&gt;</description></item><item><title>Continuously Improving Agent Quality Using Evaluators Across Single-Turn, Trajectory, and Multi-Turn Interactions</title><link>https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/</link><pubDate>Sat, 22 Feb 2025 16:02:19 -0700</pubDate><guid>https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/</guid><description>&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt; — Shipping a working agent is the easy part. Keeping it reliable under real-world usage is where most teams fail silently. This guide covers the full evaluation stack: single-turn unit tests, tool-trajectory scoring, multi-turn user simulations, and the harness engineering loop that turns traces into improvements. All examples use LangGraph, LangSmith, and Python 3.11+.&lt;/p&gt;
+&lt;/blockquote&gt;&lt;hr&gt;
+
+&lt;h2 class="relative group"&gt;The Evaluation Gap
+ &lt;div id="the-evaluation-gap" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-evaluation-gap" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;You&amp;rsquo;ve shipped an agent to production. Users are interacting with it. And somewhere in the middle of a long conversation — or on an edge-case tool invocation you never tested — it quietly goes wrong.&lt;/p&gt;</description></item></channel></rss>

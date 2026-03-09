@@ -1,31 +1,35 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "Bharat Khanna Tech Blog"
-theme = "hugo-theme-stack"
+
+baseURL  = "https://bharatkhanna.dev/"
+title    = "Bharat Khanna"
+theme    = "blowfish"
+
+defaultContentLanguage = "en"
+enableRobotsTXT        = true
+enableEmoji            = true
+buildDrafts            = false
+buildFuture            = false
 
 [params]
-	author = "Bharat Khanna"
-	description = "Tech articles, AI, LLM, DevOps, and more."
-	mainSections = ["ai", "llm", "devops", "vector-db", "case-studies"]
-	favicon = "/favicon.ico"
-	[params.dateFormat]
-		published = "2006-01-02"
-		lastUpdated = "2006-01-02"
-	[params.sidebar]
-		subtitle = "AI, LLM, DevOps, and more"
-		avatar = ""
-		emoji = "💡"
-	toc = true
-	comments = false
+  copyright = "© 2025-2026 Bharat Khanna"
 
-[menu]
-	[[menu.main]]
-		identifier = "home"
-		name = "Home"
-		url = "/"
-		weight = 1
-	[[menu.main]]
-		identifier = "about"
-		name = "About"
-		url = "/about/"
-		weight = 2
+[taxonomies]
+  category = "categories"
+  tag      = "tags"
+
+[outputs]
+  home    = ["HTML", "RSS", "JSON"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority   = 0.5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 4
+  [markup.highlight]
+    noClasses = false
+    tabWidth  = 2

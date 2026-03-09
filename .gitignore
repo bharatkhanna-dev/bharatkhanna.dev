@@ -1,0 +1,22 @@
+# Hugo build output
+/public/
+/resources/
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Markdown and project planning files (optional, remove if you want to keep these tracked)
+plan.md
+implementation-tasks.md
+Instructions.md

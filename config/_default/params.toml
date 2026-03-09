@@ -1,0 +1,66 @@
+# ── Visual & Appearance ────────────────────────────────────────────────────────
+colorScheme          = "ocean"        # dark blue/teal palette — AI-adjacent
+defaultAppearance    = "dark"         # dark-first
+autoSwitchAppearance = true           # respects system preference
+
+enableSearch         = true
+enableCodeCopy       = true
+disableImageOptimization = false
+highlightCurrentMenuArea = true
+smartTOC             = true
+smartTOCHideUnfocusedChildren = true
+
+# ── Header ────────────────────────────────────────────────────────────────────
+[header]
+  layout = "fixed"     # sticky header
+
+# ── Footer ────────────────────────────────────────────────────────────────────
+[footer]
+  showMenu              = false
+  showCopyright         = true
+  showThemeAttribution  = false
+  showScrollToTop       = true
+  showAppearanceSwitcher = true
+
+# ── Homepage — "custom" triggers layouts/index.html override ──────────────────
+[homepage]
+  layout     = "custom"
+  showRecent = false
+
+# ── Article pages ─────────────────────────────────────────────────────────────
+[article]
+  showDate              = true
+  showDateUpdated       = false
+  showAuthor            = true
+  showBreadcrumbs       = false
+  showTableOfContents   = true
+  showComments          = false
+  showHero              = false
+  showWordCount         = false
+  showReadingTime       = true
+  showHeadingAnchors    = true
+  showTaxonomies        = true
+  showPagination        = true
+
+# ── List / section pages ──────────────────────────────────────────────────────
+[list]
+  showBreadcrumbs = false
+  groupByYear     = true
+  showSummary     = true
+  paginateBy      = 10
+
+# ── Sitemap ───────────────────────────────────────────────────────────────────
+[sitemap]
+  excludedKinds = ["taxonomy", "term"]
+
+# ── Taxonomy pages ────────────────────────────────────────────────────────────
+[taxonomy]
+  showTermCount = true
+
+[term]
+  groupByYear = false
+
+# ── Mermaid — required for existing articles ──────────────────────────────────
+[mermaid]
+  enabled = true
+  theme   = "dark"

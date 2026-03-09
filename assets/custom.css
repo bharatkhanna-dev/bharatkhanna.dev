@@ -1,0 +1,39 @@
+body {
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+}
+
+/* Optional: Card shadow and border radius for articles */
+.article-list article, .article {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba(60, 72, 88, 0.08);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Optional: Hero section styling */
+.hero {
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  padding: 3rem 2rem 2rem 2rem;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* Mermaid: ensure diagrams are visible once JS has wrapped them in .mermaid-wrapper.
+   This guards against the case where a rendering error prevents the JS forEach from
+   running el.style.visibility = '' on all elements. */
+.mermaid-wrapper .mermaid {
+  visibility: visible !important;
+}

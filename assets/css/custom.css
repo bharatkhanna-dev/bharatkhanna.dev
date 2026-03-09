@@ -1,0 +1,645 @@
+/* =============================================================================
+   bharatkhanna.dev — Custom styles
+   Layered on top of Blowfish (ocean scheme, dark mode)
+   ============================================================================= */
+
+/* ── Color tokens (dark mode is the canonical state) ─────────────────────── */
+:root,
+html.dark {
+  --bk-bg:          #0a0a0a;
+  --bk-surface:     #111111;
+  --bk-surface-2:   #181818;
+  --bk-border:      rgba(255, 255, 255, 0.07);
+  --bk-border-h:    rgba(100, 255, 218, 0.22);
+  --bk-text-1:      #eeeeee;
+  --bk-text-2:      #888888;
+  --bk-text-3:      #444444;
+  --bk-accent:      #64ffda;          /* teal — technical / AI-adjacent */
+  --bk-accent-dim:  rgba(100, 255, 218, 0.06);
+  --bk-mono:        'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  --bk-r:           8px;
+  --bk-r-lg:        12px;
+}
+
+/* Light-mode overrides — keep readable if user switches */
+html:not(.dark) {
+  --bk-bg:       #f8f8f6;
+  --bk-surface:  #ffffff;
+  --bk-surface-2:#f2f2f0;
+  --bk-border:   rgba(0, 0, 0, 0.08);
+  --bk-border-h: rgba(0, 100, 80, 0.25);
+  --bk-text-1:   #111111;
+  --bk-text-2:   #555555;
+  --bk-text-3:   #999999;
+  --bk-accent:   #007a61;
+}
+
+/* ── Global background & body ─────────────────────────────────────────────── */
+html.dark body,
+html.dark #site-content,
+html.dark main {
+  background-color: var(--bk-bg) !important;
+  color: var(--bk-text-1);
+}
+
+/* ── Sticky header — glass effect ─────────────────────────────────────────── */
+html.dark header {
+  background-color: rgba(10, 10, 10, 0.85) !important;
+  border-bottom: 1px solid var(--bk-border) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+html.dark header a,
+html.dark header nav a {
+  color: var(--bk-text-2) !important;
+  transition: color 0.15s;
+}
+
+html.dark header a:hover,
+html.dark header nav a:hover {
+  color: var(--bk-text-1) !important;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+html.dark footer {
+  background-color: var(--bk-bg) !important;
+  border-top: 1px solid var(--bk-border) !important;
+  color: var(--bk-text-3) !important;
+}
+
+/* ── Prose typography — article pages ────────────────────────────────────── */
+html.dark .prose {
+  color: #cccccc;
+}
+
+html.dark .prose h1,
+html.dark .prose h2,
+html.dark .prose h3,
+html.dark .prose h4 {
+  color: var(--bk-text-1) !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+html.dark .prose h2 {
+  border-bottom: 1px solid var(--bk-border);
+  padding-bottom: 0.4em;
+  margin-top: 2.5em;
+}
+
+html.dark .prose p,
+html.dark .prose li {
+  line-height: 1.85;
+  color: #c8c8c8;
+}
+
+html.dark .prose a {
+  color: var(--bk-accent) !important;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.25);
+  transition: border-color 0.15s;
+}
+
+html.dark .prose a:hover {
+  border-color: var(--bk-accent);
+}
+
+html.dark .prose blockquote {
+  border-left-color: var(--bk-accent) !important;
+  background: var(--bk-surface) !important;
+  color: var(--bk-text-2) !important;
+  border-radius: 0 var(--bk-r) var(--bk-r) 0;
+  padding: 0.75rem 1.25rem;
+}
+
+/* Inline code */
+html.dark .prose code:not(pre code) {
+  font-family: var(--bk-mono);
+  font-size: 0.84em;
+  background: var(--bk-surface-2) !important;
+  border: 1px solid var(--bk-border) !important;
+  border-radius: 4px;
+  padding: 0.15em 0.45em;
+  color: var(--bk-accent) !important;
+}
+
+/* Code blocks */
+html.dark .prose pre {
+  background: var(--bk-surface) !important;
+  border: 1px solid var(--bk-border) !important;
+  border-radius: var(--bk-r) !important;
+  font-family: var(--bk-mono) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.65 !important;
+  padding: 1.25rem !important;
+}
+
+html.dark .prose pre code {
+  font-family: var(--bk-mono) !important;
+  background: transparent !important;
+  border: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* Tables */
+html.dark .prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+html.dark .prose th {
+  background: var(--bk-surface-2) !important;
+  color: var(--bk-text-1) !important;
+  font-weight: 600;
+  border: 1px solid var(--bk-border) !important;
+  padding: 0.6rem 0.9rem;
+}
+
+html.dark .prose td {
+  border: 1px solid var(--bk-border) !important;
+  padding: 0.55rem 0.9rem;
+  color: #cccccc !important;
+}
+
+html.dark .prose tr:nth-child(even) td {
+  background: var(--bk-surface) !important;
+}
+
+/* ── Mermaid diagrams ─────────────────────────────────────────────────────── */
+/* Diagrams are rendered by Blowfish's mermaid bundle into .mermaid divs. */
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+html.dark .mermaid svg {
+  background: transparent !important;
+}
+
+/* ── List / taxonomy pages ────────────────────────────────────────────────── */
+html.dark .article-grid article,
+html.dark article.group {
+  background: var(--bk-surface) !important;
+  border: 1px solid var(--bk-border) !important;
+  border-radius: var(--bk-r-lg) !important;
+  transition: border-color 0.2s !important;
+}
+
+html.dark .article-grid article:hover,
+html.dark article.group:hover {
+  border-color: var(--bk-border-h) !important;
+}
+
+/* ── Table of contents ────────────────────────────────────────────────────── */
+html.dark #TableOfContents {
+  background: var(--bk-surface) !important;
+  border: 1px solid var(--bk-border) !important;
+  border-radius: var(--bk-r) !important;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.875rem !important;
+}
+
+html.dark #TableOfContents a {
+  color: var(--bk-text-2) !important;
+}
+
+html.dark #TableOfContents a:hover {
+  color: var(--bk-accent) !important;
+}
+
+/* =============================================================================
+   HOMEPAGE — bk- prefixed components (scoped, no conflict with Blowfish)
+   ============================================================================= */
+
+.bk-home {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────────── */
+.bk-hero {
+  padding: 6rem 0 5rem;
+  border-bottom: 1px solid var(--bk-border);
+}
+
+.bk-label {
+  display: inline-block;
+  font-family: var(--bk-mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bk-accent);
+  margin-bottom: 1.25rem;
+}
+
+.bk-hero-name {
+  font-size: clamp(2.8rem, 7vw, 4.25rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+  color: var(--bk-text-1) !important;
+  margin: 0 0 1.5rem !important;
+}
+
+.bk-hero-bio {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--bk-text-2);
+  max-width: 540px;
+  margin: 0 0 2.25rem;
+}
+
+.bk-hero-cta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.bk-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  background: var(--bk-accent);
+  color: #0a0a0a !important;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: var(--bk-r);
+  text-decoration: none !important;
+  border: none !important;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.bk-btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.bk-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  color: var(--bk-text-1) !important;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: var(--bk-r);
+  text-decoration: none !important;
+  border: 1px solid var(--bk-border) !important;
+  transition: border-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.bk-btn-ghost:hover {
+  border-color: var(--bk-border-h) !important;
+  color: var(--bk-accent) !important;
+  transform: translateY(-1px);
+}
+
+/* ── Positioning paragraph ─────────────────────────────────────────────────── */
+.bk-positioning {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--bk-border);
+}
+
+.bk-positioning p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--bk-text-2);
+  max-width: 700px;
+  margin: 0;
+}
+
+/* ── Section headers ──────────────────────────────────────────────────────── */
+.bk-section-title {
+  font-family: var(--bk-mono);
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--bk-text-3) !important;
+  margin: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.bk-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.bk-view-all {
+  font-size: 0.8rem;
+  font-family: var(--bk-mono);
+  color: var(--bk-text-3);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.bk-view-all:hover {
+  color: var(--bk-accent);
+  border-color: var(--bk-accent);
+}
+
+/* ── Expertise pillars ────────────────────────────────────────────────────── */
+.bk-expertise {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--bk-border);
+}
+
+.bk-expertise > .bk-section-title {
+  display: block;
+  margin-bottom: 2rem !important;
+}
+
+.bk-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.bk-pillar {
+  padding: 1.5rem;
+  background: var(--bk-surface);
+  border: 1px solid var(--bk-border);
+  border-radius: var(--bk-r-lg);
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.bk-pillar:hover {
+  border-color: var(--bk-border-h);
+  transform: translateY(-2px);
+}
+
+.bk-pillar-icon {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--bk-accent);
+  margin-bottom: 0.75rem;
+  font-family: var(--bk-mono);
+}
+
+.bk-pillar h3 {
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: var(--bk-text-1) !important;
+  margin: 0 0 0.6rem !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.bk-pillar p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--bk-text-2);
+  margin: 0;
+}
+
+/* ── Writing / articles ───────────────────────────────────────────────────── */
+.bk-writing {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--bk-border);
+}
+
+.bk-articles {
+  display: flex;
+  flex-direction: column;
+}
+
+.bk-article-card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--bk-border);
+}
+
+.bk-article-card:last-child {
+  border-bottom: none;
+}
+
+.bk-article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.bk-article-date {
+  font-family: var(--bk-mono);
+  font-size: 0.72rem;
+  color: var(--bk-text-3);
+  letter-spacing: 0.04em;
+}
+
+.bk-article-rt {
+  font-family: var(--bk-mono);
+  font-size: 0.72rem;
+  color: var(--bk-text-3);
+}
+
+.bk-article-rt::before {
+  content: "·";
+  margin-right: 0.75rem;
+}
+
+.bk-article-title {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  margin: 0 0 0.45rem !important;
+  line-height: 1.4 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.bk-article-title a {
+  color: var(--bk-text-1) !important;
+  text-decoration: none !important;
+  border: none !important;
+  transition: color 0.15s;
+}
+
+.bk-article-title a:hover {
+  color: var(--bk-accent) !important;
+}
+
+.bk-article-desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--bk-text-2);
+  margin: 0 0 0.75rem;
+}
+
+.bk-article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ── Tag pills ────────────────────────────────────────────────────────────── */
+.bk-tag {
+  display: inline-block;
+  font-family: var(--bk-mono);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.55rem;
+  background: var(--bk-surface-2);
+  color: var(--bk-text-3);
+  border-radius: 4px;
+  border: 1px solid var(--bk-border);
+  transition: color 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+.bk-tag:hover {
+  color: var(--bk-accent);
+  border-color: var(--bk-border-h);
+}
+
+/* ── Projects grid ────────────────────────────────────────────────────────── */
+.bk-projects {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--bk-border);
+}
+
+.bk-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.bk-project-card {
+  padding: 1.25rem 1.5rem;
+  background: var(--bk-surface);
+  border: 1px solid var(--bk-border);
+  border-radius: var(--bk-r-lg);
+  transition: border-color 0.2s, transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bk-project-card:hover {
+  border-color: var(--bk-border-h);
+  transform: translateY(-2px);
+}
+
+.bk-project-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bk-project-title {
+  font-size: 0.925rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.bk-project-title a {
+  color: var(--bk-text-1) !important;
+  text-decoration: none !important;
+  border: none !important;
+  transition: color 0.15s;
+}
+
+.bk-project-title a:hover {
+  color: var(--bk-accent) !important;
+}
+
+.bk-project-ext {
+  color: var(--bk-text-3);
+  font-size: 0.85rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  transition: color 0.15s;
+}
+
+.bk-project-ext:hover {
+  color: var(--bk-accent);
+}
+
+.bk-project-desc {
+  font-size: 0.845rem;
+  line-height: 1.65;
+  color: var(--bk-text-2);
+  margin: 0;
+  flex: 1;
+}
+
+.bk-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+/* ── CTA footer section ───────────────────────────────────────────────────── */
+.bk-cta-footer {
+  padding: 4.5rem 0 3rem;
+}
+
+.bk-cta-text {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--bk-text-2);
+  max-width: 580px;
+  margin: 0 0 1.75rem;
+}
+
+.bk-cta-links {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.bk-cta-link {
+  font-size: 0.82rem;
+  font-family: var(--bk-mono);
+  color: var(--bk-text-3);
+  text-decoration: none;
+  border-bottom: 1px solid var(--bk-border);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.bk-cta-link:hover {
+  color: var(--bk-accent);
+  border-color: var(--bk-accent);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .bk-home {
+    padding: 0 1rem;
+  }
+
+  .bk-hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .bk-hero-name {
+    font-size: 2.6rem !important;
+  }
+
+  .bk-pillars,
+  .bk-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bk-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

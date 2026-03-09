@@ -1,0 +1,32 @@
+{{/* layouts/partials/extend-head.html
+   Called by Blowfish with .Site as context (cached across all pages).
+   Site-level JSON-LD only. Page-specific JSON-LD is in extend-head-uncached.html.
+*/}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Bharat Khanna",
+  "url": "{{ .BaseURL | strings.TrimRight "/" }}",
+  "jobTitle": "AI Engineer",
+  "description": {{ .Params.description | default "AI Engineer building production-grade LLM systems." | jsonify }},
+  "knowsAbout": [
+    "LLM Engineering", "Agent Architectures", "Vector Databases",
+    "DevOps", "LangGraph", "LangChain", "LangSmith", "Python"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": {{ .Title | jsonify }},
+  "url": "{{ .BaseURL | strings.TrimRight "/" }}",
+  "description": {{ .Params.description | default "" | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": "Bharat Khanna"
+  }
+}
+</script>
+

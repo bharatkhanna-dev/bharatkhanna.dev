@@ -1,0 +1,24 @@
+[[main]]
+  name    = "Articles"
+  pageRef = "ai"
+  weight  = 10
+
+[[main]]
+  name    = "LLM / Agents"
+  pageRef = "llm"
+  weight  = 20
+
+[[main]]
+  name    = "DevOps"
+  pageRef = "devops"
+  weight  = 30
+
+[[main]]
+  name    = "Projects"
+  pageRef = "projects"
+  weight  = 40
+
+[[main]]
+  name    = "Tags"
+  pageRef = "tags"
+  weight  = 50

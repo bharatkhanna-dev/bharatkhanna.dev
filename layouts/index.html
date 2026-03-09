@@ -1,0 +1,157 @@
+{{ define "main" }}
+<div class="bk-home">
+
+  {{/* ════════════════════ HERO ════════════════════ */}}
+  <section class="bk-hero">
+    <span class="bk-label">AI Engineer</span>
+    <h1 class="bk-hero-name">Bharat<br>Khanna</h1>
+    <p class="bk-hero-bio">
+      Building production&#x2011;grade LLM systems at scale.
+      Agent architectures, vector retrieval, and the infrastructure
+      that makes them reliable.
+    </p>
+    <div class="bk-hero-cta">
+      <a href="/ai/" class="bk-btn-primary">Read Articles</a>
+      <a href="/projects/" class="bk-btn-ghost">Projects</a>
+    </div>
+  </section>
+
+  {{/* ════════════════════ POSITIONING ════════════════════ */}}
+  <section class="bk-positioning">
+    <p>
+      I work at the intersection of LLM engineering and production systems.
+      I design LangGraph&#x2011;based agents, build evaluation harnesses
+      that catch regressions before users do, and wire everything into
+      infrastructure that can run continuously at scale.
+    </p>
+  </section>
+
+  {{/* ════════════════════ EXPERTISE ════════════════════ */}}
+  <section class="bk-expertise">
+    <h2 class="bk-section-title">Focus Areas</h2>
+    <div class="bk-pillars">
+
+      <div class="bk-pillar">
+        <span class="bk-pillar-icon">⬡</span>
+        <h3>Agent Architectures</h3>
+        <p>
+          Multi&#x2011;agent graph design with LangGraph. Evaluation harnesses,
+          trajectory scoring, and continuous improvement loops that push
+          benchmark numbers without changing model weights.
+        </p>
+      </div>
+
+      <div class="bk-pillar">
+        <span class="bk-pillar-icon">◈</span>
+        <h3>Vector Databases</h3>
+        <p>
+          Retrieval&#x2011;augmented generation at production scale.
+          pgvector, Pinecone, Weaviate — indexing strategies,
+          hybrid search, and re&#x2011;ranking pipelines.
+        </p>
+      </div>
+
+      <div class="bk-pillar">
+        <span class="bk-pillar-icon">⊞</span>
+        <h3>DevOps &amp; Infrastructure</h3>
+        <p>
+          Container orchestration, CI/CD for ML workloads, observability,
+          and the operational patterns that turn prototype agents
+          into reliable production services.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  {{/* ════════════════════ WRITING ════════════════════ */}}
+  <section class="bk-writing">
+    <div class="bk-section-header">
+      <h2 class="bk-section-title">Writing</h2>
+      <a href="/ai/" class="bk-view-all">All Articles →</a>
+    </div>
+    <div class="bk-articles">
+      {{ $articles := where .Site.RegularPages "Draft" false }}
+      {{ $articles = where $articles "Section" "not in" (slice "projects") }}
+      {{ $articles = sort $articles "Date" "desc" }}
+      {{ range first 5 $articles }}
+      <article class="bk-article-card">
+        <div class="bk-article-meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}" class="bk-article-date">
+            {{ .Date.Format "Jan 2006" }}
+          </time>
+          {{ if .ReadingTime }}
+          <span class="bk-article-rt">{{ .ReadingTime }} min read</span>
+          {{ end }}
+        </div>
+        <h3 class="bk-article-title">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h3>
+        {{ with .Description }}
+        <p class="bk-article-desc">{{ . | truncate 130 "…" }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+        <div class="bk-article-tags">
+          {{ range first 3 . }}
+          <span class="bk-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+      </article>
+      {{ end }}
+    </div>
+  </section>
+
+  {{/* ════════════════════ PROJECTS ════════════════════ */}}
+  {{ $projects := where .Site.RegularPages "Section" "projects" }}
+  {{ $projects = where $projects "Draft" false }}
+  {{ if gt (len $projects) 0 }}
+  <section class="bk-projects">
+    <div class="bk-section-header">
+      <h2 class="bk-section-title">Projects</h2>
+      <a href="/projects/" class="bk-view-all">All Projects →</a>
+    </div>
+    <div class="bk-project-grid">
+      {{ range first 3 $projects }}
+      <div class="bk-project-card">
+        <div class="bk-project-header">
+          <h3 class="bk-project-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          {{ with .Params.github }}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer"
+             class="bk-project-ext" aria-label="View source">↗</a>
+          {{ end }}
+        </div>
+        {{ with .Description }}
+        <p class="bk-project-desc">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+        <div class="bk-project-tags">
+          {{ range first 4 . }}
+          <span class="bk-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ════════════════════ CTA ════════════════════ */}}
+  <section class="bk-cta-footer">
+    <p class="bk-cta-text">
+      I write about what I'm actively working through — evaluation
+      frameworks, infrastructure decisions, and things that genuinely
+      surprised me in production.
+    </p>
+    <div class="bk-cta-links">
+      <a href="{{ .Site.BaseURL }}index.xml" class="bk-cta-link">RSS Feed</a>
+      <a href="/tags/" class="bk-cta-link">Browse Tags</a>
+      <a href="/categories/" class="bk-cta-link">Categories</a>
+    </div>
+  </section>
+
+</div>
+{{ end }}

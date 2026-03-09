@@ -1,0 +1,22 @@
+disabled     = false
+languageCode = "en"
+languageName = "English"
+weight       = 1
+title        = "Bharat Khanna"
+
+[params]
+  displayName = "EN"
+  isoCode     = "en"
+  rtl         = false
+  dateFormat  = "2 January 2006"
+  description = "AI Engineer building production-grade LLM systems — agent architectures, vector databases, and scalable infrastructure."
+
+[params.author]
+  name     = "Bharat Khanna"
+  headline = "AI Engineer"
+  bio      = "Building production-grade LLM systems. Agent architectures, vector databases, DevOps & scalable infrastructure."
+  links = [
+    { github   = "https://github.com/bharatkhanna" },
+    { linkedin = "https://linkedin.com/in/bharatkhanna" },
+    { twitter  = "https://twitter.com/bharatkhanna" },
+  ]

@@ -1,0 +1,75 @@
+{{/* layouts/partials/extend-head-uncached.html
+   Called by Blowfish per-page with full page context.
+   1. Page-specific JSON-LD structured data.
+   2. Mermaid support for fenced code blocks (triple-backtick mermaid).
+      Blowfish only loads mermaid when the mermaid shortcode is used.
+      We detect fenced blocks in .RawContent and load the bundle with defer.
+*/}}
+
+{{/* ── Per-page article JSON-LD ─────────────────────────────────────────── */}}
+{{ if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "description": {{ .Description | default "" | jsonify }},
+  "url": "{{ .Permalink | strings.TrimRight "/" }}",
+  "author": {
+    "@type": "Person",
+    "name": "Bharat Khanna",
+    "url": "{{ .Site.BaseURL | strings.TrimRight "/" }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ .Site.Title | jsonify }},
+    "url": "{{ .Site.BaseURL | strings.TrimRight "/" }}"
+  }
+  {{ with .Params.tags }}
+  ,"keywords": {{ . | jsonify }}
+  {{ end }}
+}
+</script>
+{{ end }}
+
+{{/* ── Mermaid: load bundle for pages with fenced mermaid code blocks ───── */}}
+{{ if strings.Contains .RawContent "```mermaid" }}
+  {{ $mermaidLib    := resources.Get "lib/mermaid/mermaid.min.js" }}
+  {{ $mermaidConfig := resources.Get "js/mermaid.js" | resources.Minify }}
+  {{ $bundle := slice $mermaidLib $mermaidConfig
+      | resources.Concat "js/mermaid-fenced.js"
+      | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
+  <script defer src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Convert <pre><code class="language-mermaid">...</code></pre>
+      // into <div class="not-prose mermaid">...</div>
+      document.querySelectorAll("code.language-mermaid").forEach(function (el) {
+        var div = document.createElement("div");
+        div.className = "not-prose mermaid";
+        div.textContent = el.textContent;
+        var wrapper = el.closest("pre") || el;
+        wrapper.replaceWith(div);
+      });
+
+      // Use Blowfish's init functions (defined inside the bundle above).
+      var dark = document.documentElement.classList.contains("dark") ||
+                 document.documentElement.getAttribute("data-default-appearance") === "dark";
+      dark ? initMermaidDark() : initMermaidLight();
+      mermaid.run();
+
+      // Re-render on appearance toggle.
+      new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.attributeName === "class" || m.attributeName === "data-current-appearance") {
+            var nowDark = document.documentElement.classList.contains("dark");
+            nowDark ? initMermaidDark() : initMermaidLight();
+            mermaid.run();
+          }
+        });
+      }).observe(document.documentElement, { attributes: true });
+    });
+  </script>
+{{ end }}
