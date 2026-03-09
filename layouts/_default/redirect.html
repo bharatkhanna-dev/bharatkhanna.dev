@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url={{ .Params.redirectURL }}">
+  <title>{{ .Title }}</title>
+  <script>window.location.replace("{{ .Params.redirectURL }}")</script>
+</head>
+<body>
+  <p>Redirecting to <a href="{{ .Params.redirectURL }}">{{ .Title }}</a>…</p>
+</body>
+</html>
