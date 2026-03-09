@@ -1,66 +1,36 @@
-# ── Visual & Appearance ────────────────────────────────────────────────────────
-colorScheme          = "ocean"        # dark blue/teal palette — AI-adjacent
-defaultAppearance    = "dark"         # dark-first
-autoSwitchAppearance = true           # respects system preference
+description = "AI engineer building production-grade LLM systems, agent architectures, evaluation workflows, vector retrieval pipelines, and dependable developer infrastructure."
+externalLinkDecoration = true
+displayUpdatedDate = true
+dateFormat = "January 2, 2006"
 
-enableSearch         = true
-enableCodeCopy       = true
-disableImageOptimization = false
-highlightCurrentMenuArea = true
-smartTOC             = true
-smartTOCHideUnfocusedChildren = true
+[navbar]
+  displayTitle = true
+  displayLogo = false
+  width = "wide"
 
-# ── Header ────────────────────────────────────────────────────────────────────
-[header]
-  layout = "fixed"     # sticky header
+[theme]
+  default = "system"
+  displayToggle = true
 
-# ── Footer ────────────────────────────────────────────────────────────────────
 [footer]
-  showMenu              = false
-  showCopyright         = true
-  showThemeAttribution  = false
-  showScrollToTop       = true
-  showAppearanceSwitcher = true
+  enable = true
+  displayCopyright = true
+  displayPoweredBy = false
+  width = "normal"
 
-# ── Homepage — "custom" triggers layouts/index.html override ──────────────────
-[homepage]
-  layout     = "custom"
-  showRecent = false
+[search]
+  enable = true
+  type = "flexsearch"
 
-# ── Article pages ─────────────────────────────────────────────────────────────
-[article]
-  showDate              = true
-  showDateUpdated       = false
-  showAuthor            = true
-  showBreadcrumbs       = false
-  showTableOfContents   = true
-  showComments          = false
-  showHero              = false
-  showWordCount         = false
-  showReadingTime       = true
-  showHeadingAnchors    = true
-  showTaxonomies        = true
-  showPagination        = true
+[page]
+  width = "normal"
 
-# ── List / section pages ──────────────────────────────────────────────────────
-[list]
-  showBreadcrumbs = false
-  groupByYear     = true
-  showSummary     = true
-  paginateBy      = 10
+[blog]
+  [blog.article]
+    displayPagination = true
 
-# ── Sitemap ───────────────────────────────────────────────────────────────────
-[sitemap]
-  excludedKinds = ["taxonomy", "term"]
-
-# ── Taxonomy pages ────────────────────────────────────────────────────────────
-[taxonomy]
-  showTermCount = true
-
-[term]
-  groupByYear = false
-
-# ── Mermaid — required for existing articles ──────────────────────────────────
-[mermaid]
-  enabled = true
-  theme   = "dark"
+  [blog.list]
+    sortBy = "date"
+    sortOrder = "desc"
+    displayTags = true
+    pagerSize = 10

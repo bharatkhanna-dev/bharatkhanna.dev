@@ -88,6 +88,30 @@ html.dark .prose h2 {
   margin-top: 2.5em;
 }
 
+/* Light mode section spacing */
+.prose h2 {
+  margin-top: 2.5em;
+}
+
+.prose h3 {
+  margin-top: 2em;
+}
+
+html.dark .prose h3 {
+  margin-top: 2em;
+}
+
+/* HR dividers — more breathing room above and below */
+.prose hr {
+  margin-top: 2.75rem;
+  margin-bottom: 2.75rem;
+  border-color: rgba(100, 116, 139, 0.15);
+}
+
+html.dark .prose hr {
+  border-color: rgba(148, 163, 184, 0.1);
+}
+
 html.dark .prose p,
 html.dark .prose li {
   line-height: 1.85;

@@ -9,6 +9,8 @@ categories = ["DevOps"]
 
 > **TL;DR** — A LangGraph agent is just a stateful graph. Deploying one is just serving that graph behind an API. The complexity isn't in the graph — it's in the nine things you forget to handle until they fail in production.
 
+---
+
 ## The Gap Between "Working" and "Production"
 
 Your LangGraph agent runs perfectly in a Jupyter notebook. Five of your friends have tested it. The demo was flawless.
@@ -21,6 +23,8 @@ Then you deploy it and everything that seemed fine becomes a problem:
 - You can't tell whether the agent is degraded or working normally because you have no metrics.
 
 This article covers the infrastructure layer that handles all of this.
+
+---
 
 ## Containerization
 
@@ -43,6 +47,8 @@ CMD ["python", "-m", "uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8
 ```
 
 Use `python:3.11-slim` (not `latest`) — you want reproducible builds, not surprise updates.
+
+---
 
 ## Async API Design
 
@@ -69,6 +75,8 @@ async def stream_agent(request: AgentRequest):
     return StreamingResponse(generate(), media_type="text/event-stream")
 ```
 
+---
+
 ## Timeout and Circuit Breaker Pattern
 
 LLM APIs have variable latency. Without timeouts, a slow model response hangs your entire API:
@@ -94,6 +102,8 @@ async def invoke_agent(request: AgentRequest):
     ...
 ```
 
+---
+
 ## Observability
 
 Without metrics, you're flying blind. Minimum viable observability stack:
@@ -116,6 +126,8 @@ async def metrics_middleware(request, call_next):
 ```
 
 Export to Prometheus, visualize in Grafana. Alert when p95 latency exceeds your SLA.
+
+---
 
 ## Kubernetes Deployment
 
@@ -154,6 +166,8 @@ spec:
 ```
 
 The `rollingUpdate` strategy ensures zero-downtime deploys. Pinning `image` to an exact tag (`v1.2.3`) prevents accidental rollouts from `latest` changing under you.
+
+---
 
 ## The One Thing Most Teams Skip
 

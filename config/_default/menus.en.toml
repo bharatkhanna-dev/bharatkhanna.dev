@@ -1,5 +1,5 @@
 [[main]]
-  name    = "Articles"
+  name    = "AI Systems"
   pageRef = "ai"
   weight  = 10
 
@@ -19,6 +19,15 @@
   weight  = 40
 
 [[main]]
-  name    = "Tags"
-  pageRef = "tags"
+  name    = "Search"
   weight  = 50
+
+  [main.params]
+    type = "search"
+
+[[main]]
+  name    = "Theme"
+  weight  = 60
+
+  [main.params]
+    type = "theme-toggle"

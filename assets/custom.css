@@ -37,3 +37,22 @@ body {
 .mermaid-wrapper .mermaid {
   visibility: visible !important;
 }
+
+/* Section spacing: give h2/h3 more breathing room and style hr dividers */
+.prose h2 {
+  margin-top: 2.75rem !important;
+}
+
+.prose h3 {
+  margin-top: 2rem !important;
+}
+
+.prose hr {
+  margin-top: 2.75rem !important;
+  margin-bottom: 2.75rem !important;
+  border-color: rgba(100, 116, 139, 0.15);
+}
+
+.dark .prose hr {
+  border-color: rgba(148, 163, 184, 0.12);
+}

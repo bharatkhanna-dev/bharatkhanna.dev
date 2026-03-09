@@ -1,7 +1,7 @@
 
 baseURL  = "https://bharatkhanna.dev/"
 title    = "Bharat Khanna"
-theme    = "blowfish"
+theme    = "hextra"
 
 defaultContentLanguage = "en"
 enableRobotsTXT        = true
@@ -17,7 +17,7 @@ buildFuture            = false
   tag      = "tags"
 
 [outputs]
-  home    = ["HTML", "RSS", "JSON"]
+  home    = ["HTML", "RSS"]
 
 [sitemap]
   changefreq = "weekly"
@@ -27,6 +27,11 @@ buildFuture            = false
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      [markup.goldmark.extensions.passthrough.delimiters]
+        block = [['\\[', '\\]'], ['$$', '$$']]
+        inline = [['\\(', '\\)']]
   [markup.tableOfContents]
     startLevel = 2
     endLevel   = 4
