@@ -1,6 +1,6 @@
 
 baseURL  = "https://bharatkhanna.dev/"
-title    = "Bharat Khanna"
+title    = "Bharat Khanna's Blog"
 theme    = "hextra"
 
 defaultContentLanguage = "en"

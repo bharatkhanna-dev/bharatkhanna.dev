@@ -1,0 +1,17 @@
+{{- $readMore := .Site.Params.readMore | default "Read more" -}}
+<article class="bk-post-summary">
+  <span class="bk-post-date">{{ .Date.Format "January 2, 2006" }}</span>
+  <div class="bk-post-body">
+    <h2 class="bk-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ with (partial "utils/page-description.html" .) }}
+      <div class="bk-post-excerpt">{{ . }}</div>
+    {{ end }}
+    {{ with .Params.tags }}
+      <div class="bk-post-tags">
+        {{ range first 4 . }}
+          <span class="bk-post-tag">{{ . }}</span>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</article>

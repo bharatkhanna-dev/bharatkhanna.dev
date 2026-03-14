@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <div class="bk-shell">
+    {{ partial "bk/sidebar.html" . }}
+
+    <main id="content" class="bk-main" aria-label="Article content">
+      <div class="bk-main-inner">
+        <article class="bk-article">
+          <header class="bk-page-header bk-article-header">
+            <span class="bk-post-date">{{ .Date.Format "January 2, 2006" }}</span>
+            <h1>{{ .Title }}</h1>
+            {{ with .Description }}<p class="bk-section-description">{{ . }}</p>{{ end }}
+            {{ with .Params.tags }}
+              <div class="bk-post-tags">
+                {{ range . }}
+                  <a class="bk-post-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+          </header>
+
+          <div class="content article_body bk-article-body">
+            {{ .Content }}
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+{{ end }}

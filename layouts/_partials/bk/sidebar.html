@@ -1,0 +1,40 @@
+{{- $profile := site.Params.profile -}}
+<div class="bk-mobile-header">
+  <a class="bk-mobile-brand" href="{{ site.Home.RelPermalink }}">
+    <img src="/avatar-bk.svg" alt="Bharat Khanna" class="bk-mobile-avatar">
+    <span>{{ $profile.name | default site.Title }}</span>
+  </a>
+</div>
+
+<aside class="bk-sidebar" aria-label="Site profile">
+  <header class="bk-sidebar-header">
+    <a href="{{ site.Home.RelPermalink }}" class="bk-avatar-link" aria-label="Home">
+      <img src="/avatar-bk.svg" alt="Bharat Khanna" class="bk-avatar">
+    </a>
+    <h2 class="bk-sidebar-title"><a href="{{ site.Home.RelPermalink }}">{{ $profile.name | default site.Title }}</a></h2>
+  </header>
+
+  <p class="bk-sidebar-bio">{{ $profile.title }}</p>
+
+  <div class="bk-sidebar-social" aria-label="Social links">
+    {{ with $profile.github }}<a class="bk-social-link" href="{{ . }}" target="_blank" rel="noreferrer">GH</a>{{ end }}
+    {{ with $profile.linkedin }}<a class="bk-social-link" href="{{ . }}" target="_blank" rel="noreferrer">in</a>{{ end }}
+    {{ with $profile.email }}<a class="bk-social-link" href="{{ . }}">✉</a>{{ end }}
+    {{ with $profile.rss }}<a class="bk-social-link" href="{{ . }}">RSS</a>{{ end }}
+  </div>
+
+  {{ with $profile.bio }}
+    <p class="bk-sidebar-copy">{{ . }}</p>
+  {{ end }}
+
+  {{ with $profile.primaryLinks }}
+    <footer class="bk-sidebar-footer">
+      <small>
+        {{- range $i, $item := . -}}
+          {{- if gt $i 0 }} &middot; {{ end -}}
+          <a href="{{ $item.url }}">{{ $item.name }}</a>
+        {{- end -}}
+      </small>
+    </footer>
+  {{ end }}
+</aside>

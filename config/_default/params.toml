@@ -3,27 +3,39 @@ externalLinkDecoration = true
 displayUpdatedDate = true
 dateFormat = "January 2, 2006"
 
+[profile]
+  name = "Bharat Khanna"
+  title = "AI systems, agents, evals, and infrastructure"
+  bio = "Building production-grade LLM systems with a focus on agent orchestration, retrieval, evaluation, and dependable backend systems."
+  github = "https://github.com/bharatkhanna-dev"
+  linkedin = "https://www.linkedin.com/in/bharat-khanna-07"
+  email = "mailto:khanna.bharat@gmail.com"
+  primaryLinks = [
+    { name = "Articles", url = "/ai/" },
+    { name = "Projects", url = "/projects/" }
+  ]
+
 [navbar]
-  displayTitle = true
+  displayTitle = false
   displayLogo = false
   width = "wide"
 
 [theme]
-  default = "system"
-  displayToggle = true
+  default = "light"
+  displayToggle = false
 
 [footer]
-  enable = true
+  enable = false
   displayCopyright = true
   displayPoweredBy = false
   width = "normal"
 
 [search]
-  enable = true
+  enable = false
   type = "flexsearch"
 
 [page]
-  width = "normal"
+  width = "full"
 
 [blog]
   [blog.article]

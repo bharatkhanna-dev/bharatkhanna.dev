@@ -1,5 +1,6 @@
 {{ define "main" }}
-  {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+  {{- $pages := where site.RegularPages "Section" "not in" (slice "projects") -}}
+  {{- $pages = sort $pages "Date" "desc" -}}
   {{- $pagerSize := site.Params.blog.list.pagerSize | default 15 -}}
   {{- $paginator := .Paginate $pages $pagerSize -}}
 
@@ -10,10 +11,7 @@
       <div class="bk-main-inner">
         <header class="bk-page-header">
           <h1>{{ .Title }}</h1>
-          {{ with .Description }}<p class="bk-section-description">{{ . }}</p>{{ end }}
         </header>
-
-        <div class="content bk-section-intro">{{ .Content }}</div>
 
         {{ range $paginator.Pages }}
           {{ partial "bk/post-summary.html" . }}

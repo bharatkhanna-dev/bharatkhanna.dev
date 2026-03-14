@@ -1,0 +1,46 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Bharat Khanna",
+  "url": "{{ .Site.BaseURL | strings.TrimRight "/" }}",
+  "jobTitle": "AI Engineer",
+  "description": {{ site.Params.description | jsonify }},
+  "knowsAbout": ["LLM Systems", "Agent Architectures", "Vector Retrieval", "Evaluation", "Infrastructure"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": {{ .Site.Title | jsonify }},
+  "url": "{{ .Site.BaseURL | strings.TrimRight "/" }}",
+  "description": {{ site.Params.description | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": "Bharat Khanna"
+  }
+}
+</script>
+{{ else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "description": {{ (partial "utils/page-description.html" .) | jsonify }},
+  "url": "{{ .Permalink | strings.TrimRight "/" }}",
+  "author": {
+    "@type": "Person",
+    "name": "Bharat Khanna"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ .Site.Title | jsonify }}
+  }
+}
+</script>
+{{ end }}
