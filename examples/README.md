@@ -1,20 +1,17 @@
 # Examples
 
-Working code for each project. Clone from GitHub or browse the source here.
+Article companion code lives here. Project code is in its own GitHub repo.
 
-| Project | GitHub | Article |
-| --- | --- | --- |
-| Agent Evaluation Harness | [agent-eval-harness](https://github.com/bharatkhanna-dev/agent-eval-harness) | [write-up](https://bharatkhanna.dev/projects/agent-eval-harness/) |
-| Production RAG Pipeline | [production-rag-pipeline](https://github.com/bharatkhanna-dev/production-rag-pipeline) | [write-up](https://bharatkhanna.dev/projects/production-rag-pipeline/) |
-| Vector Search Benchmark Harness | [vector-db-bench](https://github.com/bharatkhanna-dev/vector-db-bench) | [write-up](https://bharatkhanna.dev/projects/vector-db-bench/) |
+## Article examples
 
-## Running any project
+| Folder | Article |
+| --- | --- |
+| [evaluators-in-agentic-ai-multiturn/](evaluators-in-agentic-ai-multiturn/) | [Continuously Improving Agent Quality Using Evaluators](https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/) |
 
-```bash
-cd <project-dir>
-python -m venv .venv && source .venv/bin/activate
-pip install -e .[dev]
-python -m pytest -v
-```
+## Project repos
 
-Each project ships a `pyproject.toml` with a `[dev]` extra that pulls in pytest.
+| Project | GitHub |
+| --- | --- |
+| Agent Evaluation Harness | [bharatkhanna-dev/agent-eval-harness](https://github.com/bharatkhanna-dev/agent-eval-harness) |
+| Production RAG Pipeline | [bharatkhanna-dev/production-rag-pipeline](https://github.com/bharatkhanna-dev/production-rag-pipeline) |
+| Vector Search Benchmark Harness | [bharatkhanna-dev/vector-db-bench](https://github.com/bharatkhanna-dev/vector-db-bench) |
