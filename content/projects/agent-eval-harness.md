@@ -1,106 +1,75 @@
-+++
-title = "LangGraph Agent Evaluation Harness"
+﻿+++
+title = "Agent Evaluation Harness"
 date = "2026-01-15"
 draft = false
-description = "A practical evaluation harness for agent workflows — public companion example included for single-turn assertions, trajectory inspection, and regression gates."
+description = "Evaluation harness for LLM agent workflows -- deterministic scoring, trajectory checks, and regression gating you can run with just Python and pytest."
 tags = ["langgraph", "langsmith", "python", "evaluation", "agents", "testing"]
 github = "https://github.com/bharatkhanna-dev/agent-eval-harness"
-status = "Public companion example available"
-focus = "Agent evaluation, regression gates, and trace-driven quality loops"
-example_runtime = "Local Python + pytest"
-project_scope = "The public example is intentionally lightweight and deterministic so the evaluation patterns are easy to run locally, then publish cleanly as a dedicated repository."
+status = "Active"
+focus = "Agent evaluation and regression gating"
+example_runtime = "Python 3.11+ / pytest"
+project_scope = "Covers the offline evaluation layer. Does not include live tracing or online monitoring."
 example = "https://github.com/bharatkhanna-dev/agent-eval-harness"
-source = "https://github.com/bharatkhanna-dev/bharatkhanna.dev"
 highlights = [
-	"Scores single-turn outputs, tool trajectories, and release-readiness from one small harness.",
-	"Uses deterministic examples instead of live model calls so regressions stay fast and debuggable.",
-	"Pairs the write-up with a runnable Python example and pytest suite."
+"Single-turn answer scoring with keyword overlap",
+"Trajectory scoring that catches wrong tool order",
+"Regression gate with configurable pass/fail threshold",
 ]
 +++
 
-> **TL;DR** — The hardest part of shipping agents is not getting a good first demo. It is keeping behavior stable as prompts, tools, routing logic, and datasets evolve. This project turns that problem into a repeatable evaluation workflow.
+I kept running into the same problem at work: we'd update a prompt or swap a tool in our LangGraph agent, run a few manual queries, say "looks good," and merge. A week later something downstream would break and nobody could point to which change caused it.
 
-## What It Solves
+This project is my answer to that. It's a small evaluation harness that scores agent outputs on two axes -- what the agent said and what path it took to get there -- then makes a binary ship/no-ship decision based on thresholds you set.
 
-Most teams still validate agents informally: try a few prompts, eyeball the answers, and hope nothing regresses after the next prompt change or tool update. That breaks down quickly once an agent becomes stateful, tool-using, or production-facing.
+## The problem
 
-This project exists to answer a more operational question:
+Agent systems are hard to test with traditional unit tests. The output is nondeterministic, the control flow depends on tool routing, and "correct" is often fuzzy. Most teams end up with one of two failure modes:
 
-**How do you know an agent is still good after you change it?**
+1. No tests at all -- you find out about regressions from users.
+2. Flaky integration tests that call a live model -- they're slow, expensive, and break for reasons unrelated to your code.
 
-The answer is a layered harness that separates:
+I wanted something in between: deterministic tests that exercise the *evaluation logic* without needing a live model.
 
-- **single-turn correctness** — did the agent produce the right answer or route to the right tool,
-- **trajectory quality** — did it follow the right path,
-- **and release gating** — should this version be allowed to ship.
+## How it works
 
-## Components
+The harness has three layers:
 
-- **Deterministic single-turn scoring** for answer quality and required keywords
-- **Trajectory inspection** for expected tool order and routing discipline
-- **Regression summaries** that convert case-level scores into a release decision
-- **pytest coverage** so quality checks fit into normal engineering workflows
+**Answer scoring** -- given an agent's text output and a set of expected keywords, compute a coverage score. Simple keyword overlap, case-insensitive. Nothing fancy, but it catches the cases where a prompt change drops a critical piece of information from the response.
 
-## Public Companion Example
+**Trajectory scoring** -- given the sequence of tools the agent called and the expected sequence, score both coverage (did it call all the right tools?) and order precision (did it call them in the right order?). This matters because an agent can produce a correct final answer while taking a wasteful or unsafe path -- calling a billing API before verifying the user, for example.
 
-The public artifact for this project is intended to live in its own dedicated repository under `bharatkhanna-dev`:
+**Regression gating** -- run a suite of eval cases, aggregate the scores, and produce a release-ready/not-ready verdict. The gate fails if any individual case drops below its threshold or if the suite mean drops below the global threshold. We run this in CI before merging.
 
-- [Companion repo on GitHub](https://github.com/bharatkhanna-dev/agent-eval-harness)
+## What's in the repo
 
-It includes:
+The [GitHub repo](https://github.com/bharatkhanna-dev/agent-eval-harness) has the full implementation:
 
-- a small evaluation harness with score aggregation,
-- a deterministic sample agent,
-- a regression gate that marks a release as ready or blocked,
-- and tests that show how to catch trajectory and answer-quality regressions.
+- `harness.py` -- the scoring functions, data classes, and regression suite runner
+- `sample_agent.py` -- a fake agent with three hard-coded scenarios for testing
+- `tests/test_harness.py` -- pytest cases covering scoring edge cases, trajectory ordering, regression detection, and the release gate
 
-## Architecture Decisions
+Everything runs locally with zero external dependencies beyond pytest. The sample agent is deterministic -- no API calls, no randomness.
 
-### 1. Keep evaluator logic independent from agent code
+## Design choices I'd make differently
 
-Evaluation gets easier when the scoring code is boring and explicit. The harness treats the agent as a callable dependency and keeps the evaluation rules separate from the implementation under test. That makes it easier to reuse the same eval suite across prompt updates, tool changes, or even a full agent rewrite.
+**Keyword scoring is blunt.** It works for catching gross regressions ("the response stopped mentioning the incident") but misses semantic similarity. For a real deployment I'd add an LLM-as-judge layer on top, but that reintroduces the nondeterminism problem, so it needs calibration infrastructure around it.
 
-### 2. Make the release gate visible
+**The trajectory scorer weights coverage at 70% and precision at 30%.** Those numbers came from what worked for our use case (ops agents where calling the right tools matters more than calling *only* the right tools). You'd want to tune these for your domain.
 
-A quality bar hidden in CI logs is easy to ignore. A release gate that produces an explicit summary — mean score, pass/fail breakdown, and the failing cases — gives the team something concrete to act on.
+## Running it
 
-### 3. Treat trajectories as first-class signals
-
-An agent can produce a plausible final answer while taking a poor route to get there. The harness gives trajectory expectations their own score so wasteful or unsafe tool usage is visible before it becomes a production problem.
-
-## Why This Matters in Practice
-
-The real value of an eval harness is not the score itself. It is the engineering behavior it creates:
-
-- prompt changes become safer,
-- regressions become easier to isolate,
-- and discussions about “agent quality” become evidence-based instead of anecdotal.
-
-For teams building with LangGraph, LangSmith, or any multi-step agent pattern, this is often the missing layer between experimentation and disciplined iteration.
-
-## How to Use the Companion Example
-
-1. Open the example folder and install the test dependency.
-2. Run the included demo agent through the harness.
-3. Execute `pytest` to verify scoring, trajectory checks, and release gating behavior.
-4. Swap the demo agent for your own callable and extend the case definitions.
-
-The example is intentionally small, but the structure maps well onto real systems: define the behavior you care about, score it consistently, and make the shipping decision explicit.
-
-## What I Would Extend Next
-
-- dataset-backed evaluation inputs,
-- richer trajectory assertions for tool arguments,
-- and optional online/trace-driven evaluation hooks for production traffic.
-
-## Usage
-
-```python
-# Run the local deterministic companion example
-python sample_agent.py
-
-# Run the regression test suite
-python -m pytest
+```bash
+git clone https://github.com/bharatkhanna-dev/agent-eval-harness.git
+cd agent-eval-harness
+python -m venv .venv && .venv\Scripts\activate
+pip install -e .[dev]
+python -m pytest -v
 ```
 
-The companion example is designed to be understandable in minutes and adaptable in hours.
+To plug in your own agent, implement a function with the signature `(str) -> AgentRun` and pass it to `run_regression_suite` with your own `EvalCase` definitions.
+
+## Next steps
+
+- Hook up dataset-backed eval inputs instead of inline test cases
+- Add trajectory assertions on tool *arguments*, not just tool names
+- Wire optional LangSmith trace evaluation for production monitoring

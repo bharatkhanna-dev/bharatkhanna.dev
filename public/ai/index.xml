@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bharat Khanna – AI Systems</title>
-    <link>http://localhost:1313/ai/</link>
+    <link>https://bharatkhanna.dev/ai/</link>
     <description>Recent content in AI Systems on Bharat Khanna</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 08 Mar 2026 12:00:00 -0700</lastBuildDate>
     
-	  <atom:link href="http://localhost:1313/ai/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://bharatkhanna.dev/ai/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -17,10 +17,10 @@
     
     <item>
       <title>Agentic AI and Data Products: A Framework for Real-Time Autonomous Decision Systems</title>
-      <link>http://localhost:1313/ai/agentic-ai-data-products/</link>
+      <link>https://bharatkhanna.dev/ai/agentic-ai-data-products/</link>
       <pubDate>Sun, 08 Mar 2026 12:00:00 -0700</pubDate>
       
-      <guid>http://localhost:1313/ai/agentic-ai-data-products/</guid>
+      <guid>https://bharatkhanna.dev/ai/agentic-ai-data-products/</guid>
       <description>
         
         
@@ -254,10 +254,10 @@
     
     <item>
       <title>Skills vs MCP: Designing the Next Generation of AI Agent Architecture</title>
-      <link>http://localhost:1313/ai/skills-vs-mcp/</link>
+      <link>https://bharatkhanna.dev/ai/skills-vs-mcp/</link>
       <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/ai/skills-vs-mcp/</guid>
+      <guid>https://bharatkhanna.dev/ai/skills-vs-mcp/</guid>
       <description>
         
         
@@ -267,10 +267,10 @@
     
     <item>
       <title>Continuously Improving Agent Quality Using Evaluators Across Single-Turn, Trajectory, and Multi-Turn Interactions</title>
-      <link>http://localhost:1313/ai/evaluators-in-agentic-ai-multiturn/</link>
+      <link>https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/</link>
       <pubDate>Sat, 22 Feb 2025 16:02:19 -0700</pubDate>
       
-      <guid>http://localhost:1313/ai/evaluators-in-agentic-ai-multiturn/</guid>
+      <guid>https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/</guid>
       <description>
         
         

@@ -1,21 +1,8 @@
 ---
 title: "Projects"
-description: "Selected AI systems, evaluation workflows, and benchmark tooling with public companion examples."
+description: "AI/ML systems, evaluation tools, and benchmark infrastructure -- each with a public GitHub repo you can clone and run."
 ---
 
-This section is where I document projects as **usable engineering artifacts**, not just portfolio snapshots.
+These are projects I've built or extracted from production work. Each one has a write-up explaining the problem and design decisions, plus a public repo with working code and tests.
 
-Each project page now covers three things:
-
-- the problem the project was built to solve,
-- the architecture and tradeoffs that mattered in practice,
-- and a **public companion example** you can clone, run, and test locally.
-
-The goal is simple: make every project easier to understand, easier to evaluate, and easier to reuse.
-
-What to expect from each entry:
-
-- a sharper explanation of the operational problem,
-- implementation notes that explain *why* the design works,
-- a lightweight Python example with `pytest` coverage,
-- and direct links between the write-up and the working example.
+Every repo runs locally with Python and pytest. No hosted services or API keys needed for the default path.

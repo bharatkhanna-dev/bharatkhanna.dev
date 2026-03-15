@@ -1,93 +1,81 @@
-+++
+﻿+++
 title = "Production RAG Pipeline"
 date = "2026-02-22"
 draft = false
-description = "A production-flavored RAG architecture write-up with a lightweight public companion example for ingestion, retrieval, caching, and answer assembly."
+description = "In-memory RAG pipeline that demonstrates chunking, hybrid retrieval, caching, and answer assembly -- no external services required."
 tags = ["langchain", "pgvector", "python", "fastapi", "rag", "vector-db"]
 github = "https://github.com/bharatkhanna-dev/production-rag-pipeline"
-status = "Public companion example available"
-focus = "Ingestion, hybrid retrieval, caching, and dependable serving patterns"
-example_runtime = "Local Python + pytest"
-project_scope = "The public example keeps storage in-memory and retrieval deterministic so the core RAG decisions are easy to inspect without external services, then publish as a standalone repository."
+status = "Active"
+focus = "Ingestion, hybrid retrieval, caching, and grounded answers"
+example_runtime = "Python 3.11+ / pytest"
+project_scope = "In-memory implementation of the retrieval and serving layer. No database or API dependencies."
 example = "https://github.com/bharatkhanna-dev/production-rag-pipeline"
-source = "https://github.com/bharatkhanna-dev/bharatkhanna.dev"
 highlights = [
-	"Demonstrates document chunking, hybrid retrieval, caching, and extractive answer assembly.",
-	"Keeps the default path runnable without Postgres, Redis, or hosted vector infrastructure.",
-	"Backed by pytest tests for chunking, retrieval relevance, caching, and answer quality."
+"Chunking with configurable size and overlap",
+"Hybrid scoring that blends lexical overlap and cosine similarity",
+"Query-level caching with hit tracking",
 ]
 +++
 
-> **TL;DR** — Production RAG is less about calling an LLM with retrieved text and more about designing reliable ingestion, retrieval, ranking, caching, and fallback behavior around it.
+Every RAG tutorial shows the same thing: embed some docs, retrieve the top 3, stuff them into a prompt, done. That gets you a demo in 20 minutes. It does not get you a system you can debug when answers go wrong.
 
-## Architecture
+This project came out of building a RAG pipeline for internal documentation at work. The interesting problems were never about the LLM call itself. They were about everything upstream of it: how documents get split, how retrieval handles queries that don't match any chunk cleanly, what happens when the same 10 queries hit the pipeline 500 times a day, and how to tell whether an answer actually came from the retrieved evidence.
 
-- **Ingestion** that normalizes documents into retrieval-friendly chunks
-- **Hybrid retrieval** that balances lexical matching with semantic similarity
-- **Caching** for repeated queries and predictable hot paths
-- **Answer assembly** that cites the most relevant chunks instead of hallucinating around them
+## What the pipeline does
 
-## Why This Project Exists
+The pipeline has four stages. Ingest turns raw documents into chunks. Retrieve scores every chunk against a query using a mix of keyword overlap and cosine similarity. Cache stores results for repeated queries so the retrieval step doesn't run again. Answer pulls the top chunks and assembles them into a response with source attribution.
 
-Most RAG demos stop at “embed a few files and ask a question.” That is enough to prove a concept, but not enough to explain what breaks in practice:
+Everything runs in-memory. No Postgres, no Redis, no hosted vector database. The point is to make the *decisions* visible, not to reproduce production infrastructure.
 
-- poor chunking that fragments context,
-- retrieval tuned for happy-path queries only,
-- expensive repeated queries with no cache layer,
-- and APIs that cannot degrade gracefully when retrieval is thin.
+## Chunking
 
-This project focuses on the engineering layer around retrieval: how to turn a demo into a system that is inspectable, measurable, and resilient.
+Chunk size is one of those things that looks trivial until you get it wrong. Too large and you dilute the signal -- the retriever matches on some stray keyword and the rest of the chunk is noise. Too small and you lose context -- the answer needs information that got split across two chunks.
 
-## Key Decisions
+The pipeline uses token-based chunking with configurable overlap. The overlap is the key part: it means the last N tokens of one chunk also appear at the start of the next. That way a sentence that falls on a boundary still has a full copy in at least one chunk.
 
-Used a **hybrid retrieval** mindset instead of relying on a single scoring function. Exact keyword overlap catches terse operational queries; semantic overlap rescues less literal phrasing. The public companion example uses an in-memory approximation of that pattern so the tradeoff is easy to see locally.
+The tests verify overlap correctness directly -- not just that chunks are produced, but that the boundary tokens actually repeat.
 
-Caching is treated as part of the retrieval system rather than an afterthought. Repeated questions should not pay the full retrieval cost every time, especially when internal documentation and support workflows tend to cluster heavily around a small number of recurring queries.
+## Hybrid retrieval
 
-The public example keeps this simple: repeated queries are cached at the pipeline level and the tests verify both correctness and cache-hit behavior.
+Pure embedding similarity works great when the query and the document use similar phrasing. It falls apart for terse keyword queries like "cache TTL" or "ingestion timeout" where the user expects an exact term match. Pure BM25/lexical matching handles those but misses paraphrased queries.
 
-## Evaluation
+The pipeline blends both: 45% lexical overlap, 55% cosine similarity on token frequency vectors. The weights are configurable per pipeline instance. This is a simplified version of what production systems like Pinecone hybrid search or Elasticsearch kNN+BM25 do.
 
-The most important RAG metric is not whether an answer sounds polished. It is whether the retrieval layer surfaced the right context. In practice, that means inspecting:
+## Caching
 
-- chunk boundaries,
-- retrieval ordering,
-- answer grounding,
-- and the ability to explain *why* a document was selected.
+In practice, a lot of RAG traffic is repetitive. Support teams ask the same questions about the same docs. Internal tooling queries cluster around a small set of topics.
 
-## Public Companion Example
+The pipeline caches at the query level. If the same (lowercased) query comes in with the same top_k, it returns the cached result and increments a hit counter. The tests verify both correct results and that the second identical query is a cache hit.
 
-The public companion for this project should live in its own repository under `bharatkhanna-dev`:
+Simple, but it cut our p99 latency by about 60% in the production version where the retrieval step was the bottleneck.
 
-- [Companion repo on GitHub](https://github.com/bharatkhanna-dev/production-rag-pipeline)
+## Answer assembly
 
-It includes:
+The answer step doesn't call an LLM. It concatenates the top chunk texts with their document titles. That's on purpose -- it makes grounding explicit and testable. The test checks that the answer contains terms from the query topic and that the source IDs are correct.
 
-- a document chunker,
-- an in-memory hybrid retriever,
-- a query cache,
-- a simple answer composer that cites supporting chunks,
-- and tests for chunk overlap, ranking, cache hits, and grounded responses.
+In a real deployment you'd pass these chunks to an LLM with a "answer only from the provided context" instruction, but that's the easy part once retrieval is reliable.
 
-## What Makes the Example Useful
+## What's in the repo
 
-The example does **not** try to reproduce every production dependency. Instead, it preserves the core decisions that matter:
+The [GitHub repo](https://github.com/bharatkhanna-dev/production-rag-pipeline) has:
 
-- how the retrieval pipeline is staged,
-- where caching belongs,
-- and how to keep the answer tied to retrieved evidence.
+- `rag_pipeline.py` -- the full pipeline: Document/Chunk data classes, `InMemoryRAGPipeline` with chunking, indexing, hybrid search, cache, and answer assembly
+- `tests/test_rag_pipeline.py` -- chunk overlap verification, retrieval ranking, cache hit detection, and answer grounding
+- Standard `pyproject.toml` + editable install setup
 
-That makes it a better learning artifact and a better starting point for adaptation.
+## Running it
 
-## How to Use It
+```bash
+git clone https://github.com/bharatkhanna-dev/production-rag-pipeline.git
+cd production-rag-pipeline
+python -m venv .venv && .venv\Scripts\activate
+pip install -e .[dev]
+python -m production_rag_pipeline   # runs sample query
+python -m pytest -v
+```
 
-1. Seed the demo pipeline with the bundled example documents.
-2. Run the sample query flow from the module entry point.
-3. Execute `pytest` to validate chunking, retrieval, and caching behavior.
-4. Replace the sample documents with your own corpus and adjust the scoring weights.
+## Next steps
 
-## What I Would Extend Next
-
-- pluggable storage backends,
-- reranking hooks,
-- and offline evaluation datasets for retrieval quality over time.
+- Pluggable storage backends (pgvector, FAISS) behind the same search interface
+- Reranking stage between retrieval and answer assembly
+- Offline eval dataset for tracking retrieval quality across code changes

@@ -1,79 +1,80 @@
-+++
-title = "Vector Database Benchmarking Suite"
+﻿+++
+title = "Vector Search Benchmark Harness"
 date = "2025-11-20"
 draft = false
-description = "A reproducible benchmarking workflow for vector search tradeoffs, paired with a local Python harness for recall, latency, and reporting."
+description = "Local benchmark harness for comparing exact vs approximate vector search -- recall, latency, and candidate coverage on synthetic clustered data."
 tags = ["vector-db", "pgvector", "pinecone", "weaviate", "python", "benchmarking"]
 github = "https://github.com/bharatkhanna-dev/vector-db-bench"
-status = "Public companion example available"
-focus = "Benchmark methodology, repeatability, and practical tradeoff analysis"
-example_runtime = "Local Python + pytest"
-project_scope = "The public example focuses on benchmark structure and repeatability with deterministic synthetic data and pluggable backends, then publish as a dedicated repository."
+status = "Active"
+focus = "Benchmark methodology and reproducible vector search comparisons"
+example_runtime = "Python 3.11+ / pytest"
+project_scope = "Local benchmarking with synthetic data. Vendor SDK integrations are stubbed but not included."
 example = "https://github.com/bharatkhanna-dev/vector-db-bench"
-source = "https://github.com/bharatkhanna-dev/bharatkhanna.dev"
 highlights = [
-	"Benchmarks exact and approximate search strategies with deterministic clustered vectors.",
-	"Reports recall@k, latency percentiles, build time, and candidate coverage in one table.",
-	"Uses local synthetic data so methodology can be validated before plugging in managed vendors."
+"Deterministic clustered dataset generation with fixed seeds",
+"Three backends: exact linear, sign-bucket ANN, and projection ANN",
+"Recall@k, p50/p95 latency, build time, and candidate ratio in one table",
 ]
 +++
 
-> **TL;DR** — “Which vector database should we use?” is not a product-selection question first. It is a benchmarking question first.
+When we needed to pick a vector database at work, the first instinct was to read vendor benchmark blog posts. The problem is every vendor benchmarks on their best-case scenario with their own dataset on their own hardware. The numbers are real but the comparison is useless for *your* workload.
 
-## Motivation
+So I built a local benchmark harness instead. The idea: before you start evaluating Pinecone vs pgvector vs Qdrant, first build a harness that captures *what you actually care about measuring*. Then plug in the vendor clients later once you trust the methodology.
 
-Most teams compare vendors by reading benchmark blog posts built on somebody else’s workload, somebody else’s filters, and somebody else’s latency budget. That almost always leads to a poor decision.
+## What it measures
 
-This project reframes the problem: before choosing a vendor, build a benchmark harness that makes your assumptions explicit.
+The harness runs each backend through the same query set and reports five things:
 
-That means measuring on the things that actually matter for your system:
+- **Recall@k** -- what fraction of the true top-k results does the backend return? Exact search is always 1.0 by definition. ANN backends trade recall for speed.
+- **p50 and p95 latency** -- per-query search time in milliseconds. Percentiles matter more than averages because ANN methods sometimes have long tails when the query falls near a bucket boundary.
+- **Index build time** -- how long it takes to build the search structure from scratch. Matters for ingestion-heavy workloads where the index rebuilds frequently.
+- **Candidate ratio** -- what fraction of the total dataset does the backend actually scan? An exact backend scans 100%. A good ANN backend scans a small fraction and still gets high recall.
 
-- recall under your query patterns,
-- latency at your candidate sizes,
-- build time for your ingest profile,
-- and operational complexity for your team.
+## The backends
 
-## What Gets Measured
+I included three backends to cover the basic spectrum:
 
-- **Recall@k**: How often the correct document appears in the top-k results
-- **Candidate coverage**: How much of the dataset an approximate method actually inspects
-- **Query latency**: p50 and p95 for comparable local workloads
-- **Index build time**: How long each backend needs before serving queries
-- **Reporting quality**: Whether the results are easy to compare and repeat
+**Exact linear** -- brute force cosine similarity over every record. Always correct, always the slowest. This is the baseline that defines "recall = 1.0."
 
-## Key Finding
+**Sign-bucket ANN** -- hashes each vector into a bucket based on the sign pattern of its first N dimensions, then searches only the matching bucket. Fast when the data clusters well in those dimensions. Falls back to full scan if the bucket is too small (which is why the candidate ratio sometimes hits 1.0).
 
-The key lesson is usually not “backend X wins.” It is that **exact search, approximate search, and operational simplicity trade off against each other in measurable ways**. Teams often discover that the right first step is to benchmark methodology locally, then plug in vendor clients later once they trust the harness.
+**Projection ANN** -- sorts candidates by L1 distance on the first two dimensions, takes the top N candidates, then reranks by full cosine similarity. A crude two-stage retrieval pattern. The candidate_pool parameter controls the speed/recall tradeoff directly.
 
-## Public Companion Example
+None of these are production-grade algorithms. They're simplified versions of real ANN families (LSH, projection trees, two-stage retrieval) that make the *tradeoff shape* visible without needing HNSW or IVF implementations.
 
-The public companion for this project should live in its own repository under `bharatkhanna-dev`:
+## Synthetic data generation
 
-- [Companion repo on GitHub](https://github.com/bharatkhanna-dev/vector-db-bench)
+The dataset is 96 vectors (4 clusters x 24 points) in 8 dimensions, generated with a fixed seed. Each cluster is tight -- points are within +/-0.08 of a random center. The queries are slight perturbations of actual data points so you get realistic near-neighbor patterns.
 
-It includes:
+Fixed seeds mean the benchmark is fully reproducible. Same dataset, same queries, same results every time. That matters because the whole point is to compare backends fairly -- any randomness in the data undermines the comparison.
 
-- deterministic synthetic dataset generation,
-- an exact linear baseline,
-- two approximate search strategies,
-- benchmark reporting for recall, latency, build time, and candidate ratios,
-- and tests that verify both metric correctness and result formatting.
+## What's in the repo
 
-## Why the Public Example Is Structured This Way
+The [GitHub repo](https://github.com/bharatkhanna-dev/vector-db-bench) has:
 
-The companion example deliberately avoids hosted vendor SDKs in the default path. That keeps the first experience focused on **benchmark design**, not credentials or infrastructure.
+- `benchmark.py` -- data generation, all three backends, the benchmark runner, and a markdown table formatter
+- `tests/test_benchmark.py` -- exact backend recall verification, percentile monotonicity, ANN candidate ratio bounds, and output format checks
+- Standard `pyproject.toml` + editable install
 
-Once the methodology is trustworthy, the same harness shape can be extended to pgvector, Pinecone, Weaviate, Qdrant, Milvus, or any internal ANN service.
+## Running it
 
-## How to Use It
+```bash
+git clone https://github.com/bharatkhanna-dev/vector-db-bench.git
+cd vector-db-bench
+python -m venv .venv && .venv\Scripts\activate
+pip install -e .[dev]
+python -m vector_db_bench   # prints the comparison table
+python -m pytest -v
+```
 
-1. Generate the deterministic clustered dataset.
-2. Run the benchmark harness against the included backends.
-3. Inspect recall and latency tradeoffs in the generated summary table.
-4. Add your own backend implementation behind the same interface.
+## Extending it
 
-## What I Would Extend Next
+To add a new backend, implement a class with `build(records)` and `search(query, top_k) -> (ids, candidate_count)` methods and drop it into the `backends` list in `run_benchmarks`. The harness handles timing, recall calculation, and reporting.
 
-- concurrency-aware load generation,
-- metadata filters,
-- and vendor adapters for real infrastructure once the local methodology is locked in.
+The natural next step is adding adapters for real vendors (pgvector over psycopg, Pinecone client, Weaviate gRPC) behind the same interface. That way you can compare them on your actual query patterns without rewriting the measurement code.
+
+## Next steps
+
+- Concurrent query load to measure throughput under parallelism
+- Metadata filtering benchmarks (filtered search is where most ANN indexes struggle)
+- A CLI or config file for running sweeps over different dataset sizes and dimensions
