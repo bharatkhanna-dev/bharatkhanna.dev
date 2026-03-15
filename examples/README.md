@@ -4,9 +4,9 @@ Article companion code lives here. Project code is in its own GitHub repo.
 
 ## Article examples
 
-| Folder | Article |
-| --- | --- |
-| [evaluators-in-agentic-ai-multiturn/](evaluators-in-agentic-ai-multiturn/) | [Continuously Improving Agent Quality Using Evaluators](https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/) |
+| Folder | GitHub | Article |
+| --- | --- | --- |
+| [evaluators-in-agentic-ai-multiturn/](evaluators-in-agentic-ai-multiturn/) | [bharatkhanna-dev/evaluators-in-agentic-ai-multiturn](https://github.com/bharatkhanna-dev/evaluators-in-agentic-ai-multiturn) | [Continuously Improving Agent Quality Using Evaluators](https://bharatkhanna.dev/ai/evaluators-in-agentic-ai-multiturn/) |
 
 ## Project repos
 

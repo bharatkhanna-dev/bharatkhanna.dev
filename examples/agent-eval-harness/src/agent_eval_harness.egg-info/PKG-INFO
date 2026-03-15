@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: agent-eval-harness
+Version: 0.1.0
+Summary: Deterministic agent evaluation harness with regression gating.
+Author: Bharat Khanna
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest<9.0,>=8.0; extra == "dev"
+Dynamic: license-file
+
+# Agent Evaluation Harness Example
+
+Public companion example for the project page: https://bharatkhanna.dev/projects/agent-eval-harness/
+
+Target standalone repository: https://github.com/bharatkhanna-dev/agent-eval-harness
+
+This example shows how to evaluate a small agent workflow without depending on live model calls.
+
+## What is included
+
+- `src/agent_eval_harness/harness.py` — scoring logic for answers, trajectories, and release readiness
+- `src/agent_eval_harness/sample_agent.py` — deterministic demo agent and runnable regression suite
+- `tests/` — `pytest` coverage for scoring and gate behavior
+- `pyproject.toml` — standalone package metadata
+- `LICENSE` — MIT license for the future dedicated repository
+
+## Quick start
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m agent_eval_harness
+python -m pytest
+```
+
+## Why this example is useful
+
+The project page describes a larger evaluation workflow for agent systems. This companion keeps the core ideas runnable locally:
+
+- score what the agent says,
+- inspect the path it took,
+- and make a release decision from explicit thresholds.
+
+Swap the demo agent with your own callable and extend the `EvalCase` definitions to fit your workflow.
+
+## Standalone repo readiness
+
+This folder now has the minimal shape expected of its own repository:
+
+- `src/` package layout,
+- `pyproject.toml`,
+- `.gitignore`,
+- `LICENSE`,
+- and repo-local test configuration.
+
+That means it can be copied into a new GitHub repository with minimal cleanup.

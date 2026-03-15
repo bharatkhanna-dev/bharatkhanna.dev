@@ -5,6 +5,7 @@ title = 'Continuously Improving Agent Quality Using Evaluators Across Single-Tur
 description = 'A production-grade guide to agent evaluation: single-turn unit evals, trajectory scoring, multi-turn simulation, harness engineering, and LangSmith-driven continuous improvement loops.'
 tags = ['langchain', 'langgraph', 'langsmith', 'evaluation', 'agents', 'python', 'ai']
 categories = ['AI']
+github = 'https://github.com/bharatkhanna-dev/evaluators-in-agentic-ai-multiturn'
 +++
 
 > **TL;DR** — Shipping a working agent is the easy part. Keeping it reliable under real-world usage is where most teams fail silently. This guide covers the full evaluation stack: single-turn unit tests, tool-trajectory scoring, multi-turn user simulations, and the harness engineering loop that turns traces into improvements. All examples use LangGraph, LangSmith, and Python 3.11+.
