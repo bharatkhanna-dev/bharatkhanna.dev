@@ -1,0 +1,55 @@
+{{ define "main" }}
+  {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+
+  <div class="bk-shell">
+    {{ partial "bk/sidebar.html" . }}
+
+    <main id="content" class="bk-main" aria-label="Projects">
+      <div class="bk-main-inner">
+        <header class="bk-page-header">
+          <p class="bk-project-kicker">Projects with public companion examples</p>
+          <h1>{{ .Title }}</h1>
+          {{ with .Description }}<p class="bk-section-description">{{ . }}</p>{{ end }}
+        </header>
+
+        <div class="content bk-section-intro">{{ .Content }}</div>
+
+        <section class="bk-project-grid" aria-label="Project list">
+          {{ range $pages }}
+            <article class="bk-project-card">
+              <div class="bk-project-card__meta">
+                <span class="bk-project-status">{{ .Params.status | default "Project" }}</span>
+                <span class="bk-post-date">{{ .Date.Format "January 2, 2006" }}</span>
+              </div>
+
+              <div class="bk-post-body">
+                <h2 class="bk-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                {{ with (partial "utils/page-description.html" .) }}
+                  <div class="bk-post-excerpt">{{ . }}</div>
+                {{ end }}
+                {{ with .Params.focus }}
+                  <p class="bk-project-focus"><strong>Focus:</strong> {{ . }}</p>
+                {{ end }}
+                {{ with .Params.highlights }}
+                  <ul class="bk-project-highlights">
+                    {{ range first 3 . }}
+                      <li>{{ . }}</li>
+                    {{ end }}
+                  </ul>
+                {{ end }}
+                {{ with .Params.tags }}
+                  <div class="bk-post-tags">
+                    {{ range first 5 . }}
+                      <span class="bk-post-tag">{{ . }}</span>
+                    {{ end }}
+                  </div>
+                {{ end }}
+                {{ partial "bk/project-actions.html" . }}
+              </div>
+            </article>
+          {{ end }}
+        </section>
+      </div>
+    </main>
+  </div>
+{{ end }}

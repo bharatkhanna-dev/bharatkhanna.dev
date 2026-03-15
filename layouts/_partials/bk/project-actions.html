@@ -1,0 +1,16 @@
+{{- $example := .Params.example -}}
+{{- $github := .Params.github -}}
+{{- $source := .Params.source -}}
+{{- if or $example $github $source -}}
+  <div class="bk-project-actions{{ with .Params.project_actions_class }} {{ . }}{{ end }}">
+    {{ with $example }}
+      <a class="bk-button bk-button--primary" href="{{ . }}" target="_blank" rel="noreferrer">Companion repo</a>
+    {{ end }}
+    {{ if and $github (ne $github $example) }}
+      <a class="bk-button bk-button--secondary" href="{{ $github }}" target="_blank" rel="noreferrer">Project repository</a>
+    {{ end }}
+    {{ with $source }}
+      <a class="bk-button bk-button--secondary" href="{{ . }}" target="_blank" rel="noreferrer">Site source</a>
+    {{ end }}
+  </div>
+{{- end -}}

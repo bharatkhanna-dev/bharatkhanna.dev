@@ -1,0 +1,70 @@
+{{ define "main" }}
+  <div class="bk-shell">
+    {{ partial "bk/sidebar.html" . }}
+
+    <main id="content" class="bk-main" aria-label="Project content">
+      <div class="bk-main-inner">
+        <article class="bk-article">
+          <header class="bk-page-header bk-article-header">
+            <div class="bk-project-hero-meta">
+              <span class="bk-project-status">{{ .Params.status | default "Project" }}</span>
+              <span class="bk-post-date">{{ .Date.Format "January 2, 2006" }}</span>
+            </div>
+            <h1>{{ .Title }}</h1>
+            {{ with .Description }}<p class="bk-section-description">{{ . }}</p>{{ end }}
+            {{ with .Params.tags }}
+              <div class="bk-post-tags">
+                {{ range . }}
+                  <a class="bk-post-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            <div class="bk-project-header-links">
+              {{ partial "bk/project-actions.html" . }}
+            </div>
+          </header>
+
+          <dl class="bk-project-meta-grid">
+            {{ with .Params.focus }}
+              <div class="bk-project-meta-card">
+                <dt>Focus</dt>
+                <dd>{{ . }}</dd>
+              </div>
+            {{ end }}
+            {{ with .Params.example_runtime }}
+              <div class="bk-project-meta-card">
+                <dt>Runtime</dt>
+                <dd>{{ . }}</dd>
+              </div>
+            {{ end }}
+            {{ with .Params.status }}
+              <div class="bk-project-meta-card">
+                <dt>Status</dt>
+                <dd>{{ . }}</dd>
+              </div>
+            {{ end }}
+          </dl>
+
+          {{ with .Params.project_scope }}
+            <p class="bk-project-note"><strong>Public scope:</strong> {{ . }}</p>
+          {{ end }}
+
+          {{ with .Params.highlights }}
+            <section>
+              <h2>At a glance</h2>
+              <ul class="bk-project-highlights">
+                {{ range . }}
+                  <li>{{ . }}</li>
+                {{ end }}
+              </ul>
+            </section>
+          {{ end }}
+
+          <div class="content article_body bk-article-body">
+            {{ .Content }}
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+{{ end }}
