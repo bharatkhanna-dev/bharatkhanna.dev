@@ -1,7 +1,7 @@
 +++
 date = '2026-04-12T10:30:00-07:00'
 draft = false
-title = 'The Real Problem With Agent Memory Isn\'t Storage. It\'s the Contract.'
+title = "The Real Problem With Agent Memory Isn't Storage. It's the Contract."
 description = 'A sharper Medium-style essay arguing that the real differentiator in agent memory is the harness-enforced contract for what gets remembered, recalled, and governed.'
 tags = ['agents', 'memory', 'harnesses', 'langgraph', 'llm', 'ai']
 categories = ['AI']
