@@ -1,0 +1,79 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">The Four Planes of Agent Memory</title>
+  <desc id="desc">A diagram showing working set, session journal, durable memory, and the policy plane that governs all of them.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1400" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#ECE3D3"/>
+    </linearGradient>
+    <filter id="shadow2" x="0" y="0" width="200%" height="200%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#211A13" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1 1L11 6L1 11" stroke="#33404A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="900" fill="url(#bg2)"/>
+  <rect x="58" y="48" width="1284" height="804" rx="28" fill="#FCF9F3" stroke="#D9CFBE" stroke-width="2"/>
+
+  <text x="92" y="114" fill="#1F2A33" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="42" font-weight="700">The Four Planes of Agent Memory</text>
+  <text x="92" y="152" fill="#5D6A72" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="22">Short-term and long-term memory only work when the harness enforces movement, scope, and forgetting.</text>
+
+  <rect x="110" y="220" width="840" height="140" rx="28" fill="#D6EBF5" stroke="#7EAEC6" stroke-width="2.5" filter="url(#shadow2)"/>
+  <text x="148" y="270" fill="#173646" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="31" font-weight="700">1. Working Set</text>
+  <text x="148" y="308" fill="#32586B" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="21">The promptable state for the current turn: active goal, compact transcript, bounded tool outputs, open decisions.</text>
+  <text x="148" y="336" fill="#32586B" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="21">Fast, volatile, deliberately small.</text>
+  <rect x="970" y="220" width="150" height="140" rx="24" fill="#EEF7FB" stroke="#BFD6E2"/>
+  <text x="991" y="274" fill="#3B6377" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Short-term</text>
+  <text x="991" y="304" fill="#608496" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">Optimized for</text>
+  <text x="991" y="328" fill="#608496" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">the next model</text>
+  <text x="991" y="352" fill="#608496" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">call, not replay.</text>
+
+  <rect x="110" y="394" width="840" height="148" rx="28" fill="#E9DFF7" stroke="#A68CC7" stroke-width="2.5" filter="url(#shadow2)"/>
+  <text x="148" y="446" fill="#43305D" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="31" font-weight="700">2. Session Journal</text>
+  <text x="148" y="484" fill="#69537F" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="21">A structured record of turns, tool traces, retries, approvals, failures, and outcomes.</text>
+  <text x="148" y="512" fill="#69537F" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="21">Used for replay, audit, debugging, evals, and background extraction.</text>
+  <rect x="970" y="394" width="150" height="148" rx="24" fill="#F5F0FB" stroke="#D1C0EA"/>
+  <text x="991" y="448" fill="#614D7D" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Bridge Layer</text>
+  <text x="991" y="478" fill="#826C9A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">Separate from</text>
+  <text x="991" y="502" fill="#826C9A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">chat history.</text>
+  <text x="991" y="526" fill="#826C9A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">Feeds consolidation.</text>
+
+  <rect x="110" y="576" width="840" height="176" rx="28" fill="#DCEED7" stroke="#7FA670" stroke-width="2.5" filter="url(#shadow2)"/>
+  <text x="148" y="628" fill="#234126" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="31" font-weight="700">3. Durable Memory</text>
+  <text x="148" y="666" fill="#3E6142" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="21">Cross-session memory with distinct subtypes and rules.</text>
+  <rect x="148" y="692" width="176" height="42" rx="14" fill="#F8FCF6" stroke="#A8C49D"/>
+  <rect x="342" y="692" width="176" height="42" rx="14" fill="#F8FCF6" stroke="#A8C49D"/>
+  <rect x="536" y="692" width="194" height="42" rx="14" fill="#F8FCF6" stroke="#A8C49D"/>
+  <text x="183" y="719" fill="#456848" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Semantic memory</text>
+  <text x="383" y="719" fill="#456848" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Episodic memory</text>
+  <text x="576" y="719" fill="#456848" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Procedural memory</text>
+  <rect x="970" y="576" width="150" height="176" rx="24" fill="#F2F8EF" stroke="#C7DBBE"/>
+  <text x="991" y="632" fill="#47684A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Long-term</text>
+  <text x="991" y="662" fill="#66846A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">Selective recall</text>
+  <text x="991" y="686" fill="#66846A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">across users,</text>
+  <text x="991" y="710" fill="#66846A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">teams, and time.</text>
+
+  <rect x="1140" y="196" width="160" height="586" rx="34" fill="#F6D7CB" stroke="#C97C68" stroke-width="2.5" filter="url(#shadow2)"/>
+  <text x="1164" y="248" fill="#5A281F" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">4. Policy</text>
+  <text x="1164" y="282" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Namespaces</text>
+  <text x="1164" y="314" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Permissions</text>
+  <text x="1164" y="346" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Retention</text>
+  <text x="1164" y="378" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Forgetting</text>
+  <text x="1164" y="410" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Provenance</text>
+  <text x="1164" y="442" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Trust levels</text>
+  <text x="1164" y="474" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Conflict rules</text>
+  <text x="1164" y="506" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="18">Evaluation</text>
+  <text x="1164" y="562" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">The policy plane</text>
+  <text x="1164" y="584" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">spans every</text>
+  <text x="1164" y="606" fill="#7B453A" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="16">other layer.</text>
+
+  <path d="M530 360V390" stroke="#33404A" stroke-width="3" marker-end="url(#arrow2)"/>
+  <path d="M530 542V570" stroke="#33404A" stroke-width="3" marker-end="url(#arrow2)"/>
+  <path d="M950 290H958" stroke="#33404A" stroke-width="3" marker-end="url(#arrow2)"/>
+  <path d="M950 468H958" stroke="#33404A" stroke-width="3" marker-end="url(#arrow2)"/>
+  <path d="M950 664H958" stroke="#33404A" stroke-width="3" marker-end="url(#arrow2)"/>
+
+  <text x="110" y="812" fill="#6A6259" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20">Design rule: stores hold data, but the harness decides promotion, compaction, recall, and forgetting.</text>
+</svg>
