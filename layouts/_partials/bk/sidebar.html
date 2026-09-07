@@ -15,11 +15,12 @@
   </header>
 
   <p class="bk-sidebar-bio">{{ $profile.title }}</p>
+  <p class="bk-sidebar-chip">AI-first engineering</p>
 
   <div class="bk-sidebar-social" aria-label="Social links">
-    {{ with $profile.github }}<a class="bk-social-link" href="{{ . }}" target="_blank" rel="noreferrer">GH</a>{{ end }}
-    {{ with $profile.linkedin }}<a class="bk-social-link" href="{{ . }}" target="_blank" rel="noreferrer">in</a>{{ end }}
-    {{ with $profile.email }}<a class="bk-social-link" href="{{ . }}">✉</a>{{ end }}
+    {{ with $profile.github }}<a class="bk-social-link" href="{{ . }}" target="_blank" rel="noreferrer">GitHub</a>{{ end }}
+    {{ with $profile.linkedin }}<a class="bk-social-link" href="{{ . }}" target="_blank" rel="noreferrer">LinkedIn</a>{{ end }}
+    {{ with $profile.email }}<a class="bk-social-link" href="{{ . }}">Email</a>{{ end }}
     {{ with $profile.rss }}<a class="bk-social-link" href="{{ . }}">RSS</a>{{ end }}
   </div>
 
@@ -34,6 +35,8 @@
           {{- if gt $i 0 }} &middot; {{ end -}}
           <a href="{{ $item.url }}">{{ $item.name }}</a>
         {{- end -}}
+        &middot;
+        <a href="/#ecosystem">Ecosystem</a>
       </small>
     </footer>
   {{ end }}

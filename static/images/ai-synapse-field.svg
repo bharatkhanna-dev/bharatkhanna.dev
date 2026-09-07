@@ -1,0 +1,56 @@
+<svg width="1200" height="620" viewBox="0 0 1200 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EAF4FF"/>
+      <stop offset="0.6" stop-color="#DCEEFF"/>
+      <stop offset="1" stop-color="#E7FFF5"/>
+    </linearGradient>
+    <linearGradient id="wireA" x1="110" y1="470" x2="980" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1F8FFF" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#53E0B3" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="wireB" x1="80" y1="120" x2="1090" y2="490" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#53E0B3" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#1F8FFF" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="620" fill="url(#bg)"/>
+
+  <circle cx="1005" cy="75" r="140" fill="#53E0B3" opacity="0.16" filter="url(#soft)"/>
+  <circle cx="1040" cy="500" r="150" fill="#1F8FFF" opacity="0.11" filter="url(#soft)"/>
+  <circle cx="205" cy="550" r="120" fill="#1F8FFF" opacity="0.1" filter="url(#soft)"/>
+
+  <path d="M108 468C255 350 386 351 508 281C656 195 838 128 982 83" stroke="url(#wireA)" stroke-width="2"/>
+  <path d="M84 126C246 171 338 236 478 246C698 261 911 373 1092 490" stroke="url(#wireB)" stroke-width="2"/>
+  <path d="M150 351C273 296 401 281 537 315C694 353 858 337 1038 287" stroke="#1F8FFF" stroke-opacity="0.24" stroke-width="1.8"/>
+  <path d="M102 245C236 177 380 160 534 187C715 219 893 179 1098 112" stroke="#53E0B3" stroke-opacity="0.25" stroke-width="1.8"/>
+
+  <circle cx="110" cy="470" r="8" fill="#1F8FFF"/>
+  <circle cx="240" cy="401" r="5" fill="#0A5CC0"/>
+  <circle cx="360" cy="362" r="6" fill="#53E0B3"/>
+  <circle cx="508" cy="281" r="8" fill="#0A5CC0"/>
+  <circle cx="704" cy="197" r="7" fill="#1F8FFF"/>
+  <circle cx="852" cy="137" r="6" fill="#53E0B3"/>
+  <circle cx="982" cy="83" r="9" fill="#1F8FFF"/>
+
+  <circle cx="84" cy="126" r="7" fill="#53E0B3"/>
+  <circle cx="246" cy="171" r="5" fill="#1F8FFF"/>
+  <circle cx="478" cy="246" r="7" fill="#0A5CC0"/>
+  <circle cx="698" cy="261" r="8" fill="#1F8FFF"/>
+  <circle cx="911" cy="373" r="6" fill="#53E0B3"/>
+  <circle cx="1092" cy="490" r="8" fill="#0A5CC0"/>
+
+  <circle cx="150" cy="351" r="4" fill="#1F8FFF"/>
+  <circle cx="537" cy="315" r="5" fill="#0A5CC0"/>
+  <circle cx="1038" cy="287" r="4" fill="#53E0B3"/>
+
+  <rect x="812" y="220" width="238" height="150" rx="18" fill="#FFFFFF" fill-opacity="0.56" stroke="#0A5CC0" stroke-opacity="0.16"/>
+  <text x="836" y="262" fill="#12385F" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Observability</text>
+  <text x="836" y="289" fill="#27507A" font-size="14" font-family="Arial, Helvetica, sans-serif">Tracing</text>
+  <text x="836" y="312" fill="#27507A" font-size="14" font-family="Arial, Helvetica, sans-serif">Evaluation</text>
+  <text x="836" y="335" fill="#27507A" font-size="14" font-family="Arial, Helvetica, sans-serif">Guardrails</text>
+</svg>

@@ -1,21 +1,175 @@
 {{ define "main" }}
+  {{- $profile := site.Params.profile -}}
   {{- $pages := where site.RegularPages "Section" "not in" (slice "projects") -}}
   {{- $pages = sort $pages "Date" "desc" -}}
+  {{- $projectPages := where site.RegularPages "Section" "projects" -}}
+  {{- $projectPages = sort $projectPages "Date" "desc" -}}
+  {{- $mediumCount := len ($profile.mediumArticles | default (slice)) -}}
+  {{- $paperCount := len ($profile.papers | default (slice)) -}}
+  {{- $totalExternal := add $mediumCount $paperCount -}}
   {{- $pagerSize := site.Params.blog.list.pagerSize | default 15 -}}
   {{- $paginator := .Paginate $pages $pagerSize -}}
 
-  <div class="bk-shell">
+  <div class="bk-shell bk-shell--home">
     {{ partial "bk/sidebar.html" . }}
 
     <main id="content" class="bk-main" aria-label="Main content">
       <div class="bk-main-inner">
-        <header class="bk-page-header">
-          <h1>{{ .Title }}</h1>
-        </header>
+        <section class="bk-hero">
+          <div class="bk-hero-visual" aria-hidden="true">
+            <img src="/images/ai-synapse-field.svg" alt="" loading="eager" decoding="async">
+          </div>
+          <p class="bk-hero-kicker">AI Engineer Portfolio</p>
+          <h1>Building dependable AI systems that ship.</h1>
+          <p class="bk-hero-copy">
+            From agent design to eval rigor, I build AI systems that hold up in production.
+          </p>
+          <div class="bk-hero-signals" aria-label="Focus areas">
+            <span>Agents</span>
+            <span>RAG</span>
+            <span>EvalOps</span>
+            <span>LLM Infra</span>
+          </div>
+          <div class="bk-hero-actions">
+            <a class="bk-hero-btn bk-hero-btn--primary" href="/projects/">Explore Projects</a>
+            <a class="bk-hero-btn bk-hero-btn--ghost" href="/ai/">Read AI Articles</a>
+          </div>
+        </section>
 
-        {{ range $paginator.Pages }}
-          {{ partial "bk/post-summary.html" . }}
-        {{ end }}
+        <section class="bk-impact" aria-label="Highlights and outcomes">
+          <div class="bk-impact-grid">
+            <article class="bk-impact-card">
+              <p class="bk-impact-value">{{ len $pages }}</p>
+              <p class="bk-impact-label">Knowledge Articles</p>
+            </article>
+            <article class="bk-impact-card">
+              <p class="bk-impact-value">{{ len $projectPages }}</p>
+              <p class="bk-impact-label">Production Projects</p>
+            </article>
+            <article class="bk-impact-card">
+              <p class="bk-impact-value">{{ $totalExternal }}</p>
+              <p class="bk-impact-label">External Publications</p>
+            </article>
+            <article class="bk-impact-card">
+              <p class="bk-impact-value">4</p>
+              <p class="bk-impact-label">Connected Content Rails</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="bk-capabilities" aria-label="Core strengths">
+          <header class="bk-page-header">
+            <h2>What I Build for AI Teams</h2>
+          </header>
+          <div class="bk-capability-grid">
+            <article class="bk-capability-card">
+              <h3>Agent Architecture and Orchestration</h3>
+              <p>Multi-step workflows, tool routing, memory contracts, and execution reliability for complex AI tasks.</p>
+            </article>
+            <article class="bk-capability-card">
+              <h3>RAG and Retrieval Systems</h3>
+              <p>Robust ingestion, vector retrieval quality, and context selection strategies for production-grade answer accuracy.</p>
+            </article>
+            <article class="bk-capability-card">
+              <h3>EvalOps, Guardrails, and Observability</h3>
+              <p>Evaluation harnesses, regression checks, runtime policy controls, tracing, and measurable quality loops.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="ecosystem" class="bk-ecosystem" aria-label="Connected content ecosystem">
+          <header class="bk-page-header">
+            <h2>One ecosystem. Four content rails.</h2>
+            <p class="bk-section-description">Your latest thinking and builds, linked in one place so readers can move from post to code to publication without friction.</p>
+          </header>
+
+          <div class="bk-ecosystem-grid">
+            <article class="bk-ecosystem-card">
+              <h3>Medium Articles</h3>
+              <ul>
+                {{ with $profile.mediumArticles }}
+                  {{ range first 3 . }}
+                    <li><a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .title }}</a></li>
+                  {{ end }}
+                {{ else }}
+                  {{ with $profile.mediumUsername }}
+                    {{- $mediumURL := printf "https://medium.com/@%s" . -}}
+                    <li><a href="{{ $mediumURL }}" target="_blank" rel="noreferrer">Visit Medium profile</a></li>
+                  {{ else }}
+                    <li>Medium links will appear here once configured.</li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            </article>
+
+            <article class="bk-ecosystem-card">
+              <h3>LinkedIn Posts</h3>
+              <ul>
+                {{ with $profile.linkedinHighlights }}
+                  {{ range first 3 . }}
+                    <li><a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .title }}</a></li>
+                  {{ end }}
+                {{ else }}
+                  {{ with $profile.linkedin }}
+                    <li><a href="{{ . }}" target="_blank" rel="noreferrer">View LinkedIn profile</a></li>
+                  {{ else }}
+                    <li>LinkedIn highlights will appear here once configured.</li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            </article>
+
+            <article class="bk-ecosystem-card">
+              <h3>GitHub Projects</h3>
+              <ul>
+                {{ with $profile.featuredProjects }}
+                  {{ range first 3 . }}
+                    <li><a href="{{ .url }}">{{ .title }}</a></li>
+                  {{ end }}
+                {{ else }}
+                  {{ range first 3 $projectPages }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            </article>
+
+            <article class="bk-ecosystem-card">
+              <h3>Published Papers</h3>
+              <ul>
+                {{ with $profile.papers }}
+                  {{ range . }}
+                    <li><a href="{{ .url }}">{{ .title }}</a></li>
+                  {{ end }}
+                {{ else }}
+                  <li>Publication links will appear here once configured.</li>
+                {{ end }}
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="bk-recent-posts" aria-label="Recent writing">
+          <header class="bk-page-header">
+            <h2>Recent Writing</h2>
+          </header>
+
+          {{ range $paginator.Pages }}
+            {{ partial "bk/post-summary.html" . }}
+          {{ end }}
+        </section>
+
+        <section class="bk-conversation" aria-label="Collaboration">
+          <div class="bk-conversation-panel">
+            <p class="bk-conversation-kicker">Collaboration</p>
+            <h2>Building AI capabilities that survive production.</h2>
+            <p>Open to conversations around agent platforms, RAG architecture, evaluation systems, and reliability-first AI engineering.</p>
+            <div class="bk-hero-actions">
+              <a class="bk-hero-btn bk-hero-btn--primary" href="mailto:khanna.bharat@gmail.com">Start a Conversation</a>
+              <a class="bk-hero-btn bk-hero-btn--ghost" href="https://www.linkedin.com/in/bharat-khanna-07" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+            </div>
+          </div>
+        </section>
 
         {{ if gt $paginator.TotalPages 1 }}
           <div class="bk-pager-wrap">

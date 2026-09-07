@@ -10,6 +10,26 @@ dateFormat = "January 2, 2006"
   github = "https://github.com/bharatkhanna-dev"
   linkedin = "https://www.linkedin.com/in/bharat-khanna-07"
   email = "mailto:khanna.bharat@gmail.com"
+  mediumUsername = "bharatkhanna"
+  mediumArticles = [
+    { title = "Skills vs MCP: Designing the Next Generation of AI Agent Architecture", url = "https://medium.com/techtrends-digest/skills-vs-mcp-designing-the-next-generation-of-ai-agent-architecture-e7a4031711b0" },
+    { title = "The Real Competition in AI Agents Has Moved Down the Stack", url = "https://pub.towardsai.net/the-real-competition-in-ai-agents-has-moved-down-the-stack-6659fc2da981" },
+    { title = "The Real Problem with Agent Memory Isn't Storage, It's the Contract", url = "https://pub.towardsai.net/the-real-problem-with-agent-memory-isnt-storage-it-s-the-contract-448d03d0ba18" }
+  ]
+  linkedinHighlights = [
+    { title = "Recent Activity Feed", url = "https://www.linkedin.com/in/bharat-khanna-07/recent-activity/all/" },
+    { title = "LinkedIn Posts and Reposts", url = "https://www.linkedin.com/in/bharat-khanna-07/recent-activity/all/" },
+    { title = "Latest Insights on AI Systems", url = "https://www.linkedin.com/in/bharat-khanna-07/recent-activity/all/" }
+  ]
+  featuredProjects = [
+    { title = "Agent Eval Harness", url = "/projects/agent-eval-harness/" },
+    { title = "Production RAG Pipeline", url = "/projects/production-rag-pipeline/" },
+    { title = "Vector DB Benchmark", url = "/projects/vector-db-bench/" }
+  ]
+  papers = [
+    { title = "Google Scholar Citation", url = "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=15Ant1gAAAAJ&citation_for_view=15Ant1gAAAAJ:u-x6o8ySG0sC" },
+    { title = "Zenodo Publication", url = "https://zenodo.org/records/18844429" }
+  ]
   primaryLinks = [
     { name = "Articles", url = "/ai/" },
     { name = "Projects", url = "/projects/" }
