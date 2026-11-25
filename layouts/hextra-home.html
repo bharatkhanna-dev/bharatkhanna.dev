@@ -4,6 +4,7 @@
   {{- $pages = sort $pages "Date" "desc" -}}
   {{- $projectPages := where site.RegularPages "Section" "projects" -}}
   {{- $projectPages = sort $projectPages "Date" "desc" -}}
+  {{- $projectCount := len ($profile.featuredProjects | default (slice)) -}}
   {{- $mediumCount := len ($profile.mediumArticles | default (slice)) -}}
   {{- $paperCount := len ($profile.papers | default (slice)) -}}
   {{- $totalExternal := add $mediumCount $paperCount -}}
@@ -43,8 +44,8 @@
               <p class="bk-impact-label">Knowledge Articles</p>
             </article>
             <article class="bk-impact-card">
-              <p class="bk-impact-value">{{ len $projectPages }}</p>
-              <p class="bk-impact-label">Production Projects</p>
+              <p class="bk-impact-value">{{ $projectCount }}</p>
+              <p class="bk-impact-label">Featured Projects</p>
             </article>
             <article class="bk-impact-card">
               <p class="bk-impact-value">{{ $totalExternal }}</p>
@@ -88,7 +89,7 @@
               <h3>Medium Articles</h3>
               <ul>
                 {{ with $profile.mediumArticles }}
-                  {{ range first 3 . }}
+                  {{ range . }}
                     <li><a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .title }}</a></li>
                   {{ end }}
                 {{ else }}
@@ -123,7 +124,7 @@
               <h3>GitHub Projects</h3>
               <ul>
                 {{ with $profile.featuredProjects }}
-                  {{ range first 3 . }}
+                  {{ range . }}
                     <li><a href="{{ .url }}">{{ .title }}</a></li>
                   {{ end }}
                 {{ else }}
