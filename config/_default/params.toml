@@ -24,6 +24,9 @@ dateFormat = "January 2, 2006"
     { title = "Latest Insights on AI Systems", url = "https://www.linkedin.com/in/bharat-khanna-07/recent-activity/all/" }
   ]
   featuredProjects = [
+    { title = "LangChain Placeholder Guard", url = "https://github.com/bharatkhanna-dev/langchain-placeholder-guard" },
+    { title = "LangChain Empty Response Retry", url = "https://github.com/bharatkhanna-dev/langchain-empty-response-retry" },
+    { title = "LangChain Turn Window", url = "https://github.com/bharatkhanna-dev/langchain-turn-window" },
     { title = "Agent Eval Harness", url = "/projects/agent-eval-harness/" },
     { title = "Production RAG Pipeline", url = "/projects/production-rag-pipeline/" },
     { title = "Vector DB Benchmark", url = "/projects/vector-db-bench/" }
