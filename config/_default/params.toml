@@ -12,6 +12,8 @@ dateFormat = "January 2, 2006"
   email = "mailto:khanna.bharat@gmail.com"
   mediumUsername = "bharatkhanna"
   mediumArticles = [
+    { title = "Your AI Agent Can Do More Than Write Code: These 7 MCP Capabilities Prove It", url = "https://medium.com/@khanna.bharat/your-ai-agent-can-do-more-than-write-code-these-7-mcp-capabilities-prove-it-7ad63f7e5327" },
+    { title = "Your AI Agent Works Until It Has to Recover", url = "https://generativeai.pub/your-ai-agent-works-until-it-has-to-recover-833791765365" },
     { title = "Skills vs MCP: Designing the Next Generation of AI Agent Architecture", url = "https://medium.com/techtrends-digest/skills-vs-mcp-designing-the-next-generation-of-ai-agent-architecture-e7a4031711b0" },
     { title = "The Real Competition in AI Agents Has Moved Down the Stack", url = "https://pub.towardsai.net/the-real-competition-in-ai-agents-has-moved-down-the-stack-6659fc2da981" },
     { title = "The Real Problem with Agent Memory Isn't Storage, It's the Contract", url = "https://pub.towardsai.net/the-real-problem-with-agent-memory-isnt-storage-it-s-the-contract-448d03d0ba18" }
